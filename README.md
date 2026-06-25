@@ -1,1 +1,1 @@
-# Text-Summarizer
+The footer change is okay and can be applied across all PRT assessments since it’s a common footer. The second change is only applicable to Conduct Risk Assessment and should not be changed for COI, FRA, or other PRT assessments.
