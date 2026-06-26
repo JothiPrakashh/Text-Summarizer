@@ -1,161 +1,438 @@
-Test Scenario
+Common Test Steps (Steps 1–6)
+
+1. Login to Service Bench application.
+2. Navigate to Conduct Risk plugins → Click Conduct Risk Assessment plugin → Click Initiate Risk Assessment.
+3. Select Project ID and Impacted Business Function with RFO.
+4. Click Submit.
+5. Complete Risk Assessment – Part 1.
+6. Click Next to navigate to Risk Assessment – Part 2.
+
+⸻
+
+TC-01 Verify header is displayed on top of the screen
 
 Test Steps
 
+Common Steps (1–6)
+
 Expected Result
 
-Verify header is displayed on top of the screen
+1. User navigates to Risk Assessment – Part 2.
+2. Header is displayed as Conduct – Risk Assessment.
 
-1. Login to Service Bench application.2. Navigate to Conduct Risk plugins.3. Click Conduct Risk Assessment → Initiate Risk Assessment.4. Select Project ID and impacted Business Function with RFO.5. Complete Part 1 and click Next.
+⸻
 
-1. User navigates to Risk Assessment – Part 2.2. Header is displayed as Conduct – Risk Assessment.
+TC-02 Verify Details panel is displayed
 
-Verify details panel is displayed
+Test Steps
 
-Same navigation steps as above.
+Common Steps (1–6)
 
-Case ID, Initiative ID, Programme ID, Initiative Name, Programme Name, Impacted Business Function and other details are displayed as read-only.
+Expected Result
 
-Verify sensitive data warning visibility
+1. Case ID is displayed.
+2. Initiative ID is displayed.
+3. Programme ID is displayed.
+4. Initiative Name is displayed.
+5. Programme Name is displayed.
+6. Impacted Business Function is displayed.
+7. Details are read-only.
 
-Same navigation steps.
+⸻
 
-Sensitive Data Warning message is displayed.
+TC-03 Verify Sensitive Data Warning visibility
 
-Verify guideline visibility
+Test Steps
 
-Same navigation steps.
+Common Steps (1–6)
 
-Conduct guideline section and View Guideline link are displayed.
+Expected Result
 
-Verify only eligible Conduct Risk Areas are displayed
+1. Sensitive Data Warning message is displayed.
 
-1. In Part 1 mark selected Conduct Areas as Applicability = Yes and Conduct Risk = Yes.2. Complete Part 1.3. Click Next.
+⸻
 
-Only Conduct Risk Areas where Applicability = Yes and Conduct Risk = Yes are displayed in Part 2.
+TC-04 Verify Guideline visibility
 
-Verify Conduct Risk Description is displayed from Part 1
+Test Steps
 
-1. Enter Conduct Risk Description in Part 1.2. Navigate to Part 2.
+Common Steps (1–6)
 
-Conduct Risk Description entered in Part 1 is displayed against the corresponding Conduct Risk Area.
+7. Click View Guideline.
 
-Verify updated Conduct Risk Description synchronization
+Expected Result
 
-1. Navigate back to Part 1.2. Update Conduct Risk Description.3. Save and return to Part 2.
+1. Guideline section is displayed.
+2. Guideline document opens successfully.
 
-Latest saved Conduct Risk Description is displayed in Part 2.
+⸻
 
-Verify Conduct Risk Impact Scale dropdown
+TC-05 Verify only eligible Conduct Risk Areas are displayed
 
-Navigate to Part 2.
+Test Steps
 
-Impact Scale dropdown is displayed with values Red, Amber and Green.
+Common Steps (1–6)
 
-Verify Red impact scale selection
+7. Observe the Conduct Risk Areas displayed.
 
-Select Red from the dropdown.
+Expected Result
 
-Red is selected successfully and Upload Document field becomes mandatory.
+1. Only Conduct Risk Areas with Applicability = Yes and Conduct Risk = Yes are displayed.
+2. Remaining Conduct Risk Areas are not displayed.
 
-Verify Amber impact scale selection
+⸻
 
-Select Amber from the dropdown.
+TC-06 Verify Conduct Risk Description is displayed from Part 1
 
-Amber is selected successfully and Upload Document field becomes mandatory.
+Test Steps
 
-Verify Green impact scale selection
+Common Steps (1–6)
 
-Select Green from the dropdown.
+7. Observe the Conduct Risk Description for each Conduct Risk Area.
 
-Green is selected successfully and Upload Document field remains optional.
+Expected Result
 
-Verify Upload Document is mandatory for Red
+1. Conduct Risk Description entered in Part 1 is displayed for the corresponding Conduct Risk Area.
 
-Select Red and click Next/Submit without uploading a document.
+⸻
 
-Validation message is displayed and user cannot proceed until a document is uploaded.
+TC-07 Verify updated Conduct Risk Description synchronization
 
-Verify Upload Document is mandatory for Amber
+Test Steps
 
-Select Amber and click Next/Submit without uploading a document.
+Common Steps (1–6)
 
-Validation message is displayed and user cannot proceed until a document is uploaded.
+7. Click Previous.
+8. Update Conduct Risk Description in Part 1.
+9. Click Next.
+10. Observe the Conduct Risk Description.
 
-Verify Upload Document is optional for Green
+Expected Result
 
-Select Green and click Next without uploading a document.
+1. Updated Conduct Risk Description is displayed.
+2. Latest saved value is reflected in Part 2.
 
-User can proceed without uploading a document.
+⸻
 
-Verify Upload Document functionality
+TC-08 Verify Conduct Risk Impact Scale dropdown
 
-Click Upload Document and select a supported file.
+Test Steps
 
-Document uploads successfully and filename is displayed.
+Common Steps (1–6)
 
-Verify Remove Uploaded Document
+7. Click the Conduct Risk Impact Scale dropdown.
 
-Upload a document and click the Delete/Remove icon.
+Expected Result
 
-Uploaded document is removed successfully.
+1. Dropdown displays:
+    * Red
+    * Amber
+    * Green
 
-Verify Replace Uploaded Document
+⸻
 
-Upload a document, remove it and upload another document.
+TC-09 Verify Red Impact Scale selection
 
-Newly uploaded document replaces the previous document successfully.
+Test Steps
 
-Verify warning popup when Conduct Risk Area is removed in Part 1
+Common Steps (1–6)
 
-1. Complete Part 2.2. Navigate back to Part 1.3. Change Applicability Yes→No or Conduct Risk Yes→No for an existing Conduct Area.
+7. Select Red from Conduct Risk Impact Scale dropdown.
 
-Confirmation popup is displayed stating that downstream data in Part 2 and Mitigation Plan will be removed.
+Expected Result
 
-Verify Confirm removes downstream data from Part 2
+1. Red Impact Scale is selected successfully.
+2. Upload Document field becomes mandatory.
 
-Click Confirm in the warning popup and navigate to Part 2.
+⸻
 
-Corresponding Conduct Risk Area, Conduct Risk Description, Impact Scale and uploaded document are removed from Part 2.
+TC-10 Verify Amber Impact Scale selection
 
-Verify Cancel retains downstream data
+Test Steps
 
-Click Cancel in the warning popup and return to Part 2.
+Common Steps (1–6)
 
-Previously entered Conduct Risk Area, Description, Impact Scale and uploaded document remain unchanged.
+7. Select Amber from Conduct Risk Impact Scale dropdown.
 
-Verify Save as Draft functionality
+Expected Result
 
-Complete Part 2 and click Save as Draft.
+1. Amber Impact Scale is selected successfully.
+2. Upload Document field becomes mandatory.
 
-Assessment is saved successfully, remains in In Progress status and user is redirected appropriately.
+⸻
 
-Verify Clear All functionality
+TC-11 Verify Green Impact Scale selection
 
-Enter Impact Scale and upload a document. Click Clear All.
+Test Steps
 
-All user-entered values are cleared while auto-populated project details remain unchanged.
+Common Steps (1–6)
 
-Verify Previous button navigation
+7. Select Green from Conduct Risk Impact Scale dropdown.
 
-Click Previous.
+Expected Result
 
-User navigates back to Risk Assessment – Part 1.
+1. Green Impact Scale is selected successfully.
+2. Upload Document remains optional.
 
-Verify Next button navigation
+⸻
 
-Complete all mandatory fields and click Next.
+TC-12 Verify Upload Document mandatory for Red
 
-User navigates to Mitigation Plan & Commentary screen.
+Test Steps
 
-Verify Submit functionality
+Common Steps (1–6)
 
-Complete all mandatory fields and click Submit.
+7. Select Red Impact Scale.
+8. Do not upload any document.
+9. Click Next.
 
-Assessment is submitted successfully and moves to the next workflow stage.
+Expected Result
 
-Verify mandatory field validations
+1. Validation message is displayed.
+2. User cannot proceed without uploading a supporting document.
 
-Leave mandatory fields blank and click Next/Submit.
+⸻
 
-Validation messages are displayed and user cannot proceed until mandatory fields are completed.
+TC-13 Verify Upload Document mandatory for Amber
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Amber Impact Scale.
+8. Do not upload any document.
+9. Click Next.
+
+Expected Result
+
+1. Validation message is displayed.
+2. User cannot proceed without uploading a supporting document
+TC-14 Verify Upload Document is optional for Green
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Green from Conduct Risk Impact Scale dropdown.
+8. Do not upload a supporting document.
+9. Click Next.
+
+Expected Result
+
+1. User is able to proceed to the next stage successfully.
+2. Upload Document is optional for Green Impact Scale.
+
+⸻
+
+TC-15 Verify Upload Document functionality
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Red or Amber Impact Scale.
+8. Click Upload Document.
+9. Browse and select a supported document.
+10. Upload the document.
+
+Expected Result
+
+1. Document is uploaded successfully.
+2. Uploaded document name is displayed.
+
+⸻
+
+TC-16 Verify Remove Uploaded Document
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Red or Amber Impact Scale.
+8. Upload a supporting document.
+9. Click the Delete/Remove icon.
+
+Expected Result
+
+1. Uploaded document is removed successfully.
+2. Upload Document control is available to upload another file.
+
+⸻
+
+TC-17 Verify Replace Uploaded Document
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Red or Amber Impact Scale.
+8. Upload a supporting document.
+9. Remove the uploaded document.
+10. Upload another supported document.
+
+Expected Result
+
+1. Previously uploaded document is removed.
+2. Newly uploaded document is displayed successfully.
+
+⸻
+
+TC-18 Verify warning popup when Conduct Risk Area is removed in Part 1
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Conduct Risk Impact Scale.
+8. Upload supporting document.
+9. Click Previous.
+10. Change Applicability = Yes to No or Conduct Risk = Yes to No.
+11. Observe the confirmation popup.
+
+Expected Result
+
+1. Warning popup is displayed.
+2. Popup informs the user that downstream data in Part 2 and Mitigation Plan will be removed.
+
+⸻
+
+TC-19 Verify Confirm removes downstream data from Part 2
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Conduct Risk Impact Scale.
+8. Upload supporting document.
+9. Click Previous.
+10. Change Applicability = Yes to No or Conduct Risk = Yes to No.
+11. Click Confirm.
+12. Click Next.
+
+Expected Result
+
+1. Corresponding Conduct Risk Area is removed.
+2. Conduct Risk Description is removed.
+3. Conduct Risk Impact Scale is removed.
+4. Uploaded supporting document is removed.
+
+⸻
+
+TC-20 Verify Cancel retains downstream data
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Conduct Risk Impact Scale.
+8. Upload supporting document.
+9. Click Previous.
+10. Change Applicability = Yes to No or Conduct Risk = Yes to No.
+11. Click Cancel.
+12. Return to Part 2.
+
+Expected Result
+
+1. Previously entered Conduct Risk Area remains.
+2. Conduct Risk Description remains.
+3. Impact Scale remains.
+4. Uploaded document remains.
+
+⸻
+
+TC-21 Verify Save as Draft functionality
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Conduct Risk Impact Scale.
+8. Upload supporting document where applicable.
+9. Click Save as Draft.
+10. Reopen the assessment.
+
+Expected Result
+
+1. Assessment is saved successfully.
+2. Status remains In Progress.
+3. Previously entered values are retained.
+
+⸻
+
+TC-22 Verify Clear All functionality
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Select Conduct Risk Impact Scale.
+8. Upload supporting document.
+9. Click Clear All.
+10. Confirm the action.
+
+Expected Result
+
+1. Selected Impact Scale is cleared.
+2. Uploaded document is removed.
+3. Auto-populated project details remain unchanged.
+
+⸻
+
+TC-23 Verify Previous button navigation
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Click Previous.
+
+Expected Result
+
+1. User is navigated to Risk Assessment – Part 1.
+
+⸻
+
+TC-24 Verify Next button navigation
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Complete all mandatory fields.
+8. Click Next.
+
+Expected Result
+
+1. User is navigated to Mitigation Plan & Commentary stage.
+
+⸻
+
+TC-25 Verify Submit functionality
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Complete all mandatory fields.
+8. Click Submit.
+
+Expected Result
+
+1. Assessment is submitted successfully.
+2. Assessment moves to the next workflow stage.
+
+⸻
+
+TC-26 Verify mandatory field validations
+
+Test Steps
+
+Common Steps (1–6)
+
+7. Leave one or more mandatory fields blank.
+8. Click Next or Submit.
+
+Expected Result
+
+1. Appropriate validation message is displayed.
+2. User cannot proceed until all mandatory fields are completed
