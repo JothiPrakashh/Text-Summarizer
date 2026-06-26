@@ -1,21 +1,477 @@
-MIT License
+Common Test Steps (Used as Base)
 
-Copyright (c) 2025 JothiPrakashh
+Use this as the starting point for every Mitigation Plan test case.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Login to Service Bench application.
+2. Navigate to Conduct Risk Assessment plugins → Click Conduct Risk Assessment plugin → Click on Initiate Risk Assessment.
+3. Select Project ID and impacted Business Functions with RFO.
+4. Click on Submit.
+5. Complete Risk Assessment Part 1.
+6. Complete Risk Assessment Part 2.
+7. Click Next to navigate to Mitigation Plan / Commentary stage.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+⸻
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. Verify Header
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Observe the page header.
+
+Expected Result
+
+1. User is navigated to Mitigation Plan / Commentary stage.
+2. Header is displayed as Conduct - Risk Assessment.
+3. Mitigation Plan / Commentary stage is highlighted.
+
+⸻
+
+2. Verify Details Panel
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Observe the Details panel.
+
+Expected Result
+
+1. Details panel is displayed.
+2. Case ID, Initiative ID, Programme ID, Initiative Name, Programme Name and Impacted Business Function are displayed.
+3. Details are read-only.
+
+⸻
+
+3. Verify Warning Message
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Observe the warning banner.
+
+Expected Result
+
+1. Sensitive Data Warning is displayed.
+
+⸻
+
+4. Verify Guidelines
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Observe the Guidelines section.
+9. Click View Guideline.
+
+Expected Result
+
+1. Guidelines section is displayed.
+2. Guideline document opens successfully.
+
+⸻
+
+5. Verify Conduct Risks are displayed
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Observe the mitigation grid.
+
+Expected Result
+
+1. All Conduct Risk Areas from Part 2 are displayed.
+2. Conduct Risk Description and Impact Scale are displayed.
+
+⸻
+
+6. Verify Search
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Enter Conduct Risk Area name in Search box.
+9. Press Enter/Search.
+
+Expected Result
+
+1. Matching Conduct Risk Areas are displayed.
+
+⸻
+
+7. Verify Add Mitigation Plan popup
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+
+Expected Result
+
+1. Add/Edit Mitigation Plan popup opens.
+
+⸻
+
+8. Verify Conduct Risk Area dropdown
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Click Conduct Risk Area dropdown.
+
+Expected Result
+
+1. Only eligible Conduct Risk Areas are displayed.
+2. User can select one Conduct Risk Area.
+
+⸻
+
+9. Verify Impact Scale display
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select a Conduct Risk Area.
+
+Expected Result
+
+1. Corresponding Impact Scale is displayed.
+2. Impact Scale is read-only.
+
+⸻
+
+10. Verify Conduct Risk Description
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select a Conduct Risk Area.
+
+Expected Result
+
+1. Conduct Risk Description from Part 2 is displayed.
+2. Description is read-only.
+
+⸻
+
+11. Verify Mitigation Plan mandatory for Red
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select a Red Conduct Risk Area.
+10. Leave Mitigation Plan blank.
+11. Select Conduct Outcome.
+12. Click Submit.
+
+Expected Result
+
+1. Validation message is displayed.
+2. Record is not saved.
+
+⸻
+
+12. Verify Mitigation Plan mandatory for Amber
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select an Amber Conduct Risk Area.
+10. Leave Mitigation Plan blank.
+11. Select Conduct Outcome.
+12. Click Submit.
+
+Expected Result
+
+1. Validation message is displayed.
+2. Record is not saved.
+
+⸻
+
+13. Verify Green Commentary
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select a Green Conduct Risk Area.
+
+Expected Result
+
+1. Commentary field is displayed.
+2. Mitigation fields applicable to Red/Amber are not displayed.
+
+⸻
+
+14. Verify 5000 Character Limit
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Enter more than 5000 characters in Mitigation Plan/Commentary.
+
+Expected Result
+
+1. Maximum 5000 characters are allowed.
+2. Character counter is displayed correctly.
+
+⸻
+
+15. Verify Conduct Outcome dropdown
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Click Conduct Outcome dropdown.
+
+Expected Result
+
+1. All available Conduct Outcomes are displayed.
+
+⸻
+
+16. Verify maximum two Conduct Outcomes
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select first Conduct Outcome.
+10. Select second Conduct Outcome.
+11. Attempt to select third Conduct Outcome.
+
+Expected Result
+
+1. Only two Conduct Outcomes can be selected.
+2. Third selection is prevented.
+
+⸻
+
+17. Verify Conduct Outcome mandatory
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Enter Mitigation Plan.
+10. Leave Conduct Outcome blank.
+11. Click Submit.
+
+Expected Result
+
+1. Validation message is displayed.
+2. Record is not saved.
+
+⸻
+
+18. Verify Upload document
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Upload a supported document.
+10. Click Submit.
+
+Expected Result
+
+1. Document uploads successfully.
+2. Uploaded document is displayed.
+
+⸻
+
+19. Verify Submit Mitigation Plan
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select Conduct Risk Area.
+10. Enter Mitigation Plan/Commentary.
+11. Select Conduct Outcomes.
+12. Upload document if required.
+13. Click Submit.
+
+Expected Result
+
+1. Mitigation Plan is saved.
+2. Record is displayed in the mitigation grid.
+
+⸻
+
+20. Verify Cancel
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Enter Mitigation details.
+10. Click Cancel.
+
+Expected Result
+
+1. Popup closes.
+2. Changes are discarded.
+
+⸻
+
+21. Verify Edit
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Add and save a Mitigation Plan.
+9. Click Action menu.
+10. Click Edit.
+11. Modify Mitigation Plan.
+12. Click Submit.
+
+Expected Result
+
+1. Changes are saved.
+2. Updated details are displayed in the grid.
+
+⸻
+
+22. Verify Delete
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Add and save a Mitigation Plan.
+9. Click Action menu.
+10. Click Delete.
+11. Confirm deletion.
+
+Expected Result
+
+1. Selected Mitigation Plan is deleted.
+2. Record is removed from the grid.
+
+⸻
+
+23. Verify Audit Log
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Add and save a Mitigation Plan.
+9. Click Action menu.
+10. Click Audit Log.
+
+Expected Result
+
+1. Audit history is displayed for the selected Conduct Risk Area.
+
+⸻
+
+24. Verify Previous
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Previous.
+
+Expected Result
+
+1. User is navigated back to Risk Assessment Part 2.
+
+⸻
+
+25. Verify Next
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Complete all mandatory Mitigation Plans.
+9. Click Next.
+
+Expected Result
+
+1. User is navigated to RFO Comments stage.
+
+⸻
+
+26. Verify Save as Draft
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Enter Mitigation details.
+9. Click Save as Draft.
+10. Reopen the assessment.
+
+Expected Result
+
+1. Assessment is saved as Draft.
+2. Previously entered details are retained.
+
+⸻
+
+27. Verify Clear All
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Enter Mitigation details.
+9. Click Clear All.
+10. Confirm the action.
+
+Expected Result
+
+1. All unsaved Mitigation Plan details are cleared.
+2. Screen is reset.
+
+⸻
+
+28. Verify Submit Assessment
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Complete all mandatory Mitigation Plans.
+9. Click Submit.
+
+Expected Result
+
+1. Assessment is submitted successfully.
+2. Success message is displayed.
+
+⸻
+
+29. Verify completed Conduct Risk Areas are not available in Add dropdown
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Add and save a Mitigation Plan for one Conduct Risk Area.
+9. Click Add.
+10. Open Conduct Risk Area dropdown.
+
+Expected Result
+
+1. Previously completed Conduct Risk Area is not displayed.
+2. Only pending Conduct Risk Areas are available.
+
+⸻
+
+30. Verify Green popup displays only Green fields
+
+Test Steps
+
+1-7 Common Test Steps.
+8. Click Add.
+9. Select a Green Conduct Risk Area.
+
+Expected Result
+
+1. Conduct Risk Area, Impact Scale and Description are displayed.
+2. Commentary field is displayed.
+3. Conduct Outcome dropdown is displayed.
+4. Fields applicable only to Red/Amber are not displayed
