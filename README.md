@@ -1,63 +1,47 @@
-AC2 – New Product Landing Page Export
+AC8 – Material Change in Process
 
-For assessments created under the New Product initiative category, the landing page export shall include the applicable columns, including but not limited to:
+When Material Change in Process is selected:
 
-* Programme Code
-* Programme Name
-* Product Manager
-* Trigger Event
+Trigger Event / Driver
 
-⸻
-
-AC3 – Corporate Action Landing Page Export
-
-For assessments created under the Corporate Action initiative category, the landing page export shall include the applicable columns, including but not limited to:
-
-* Project Name
-* Transaction
-* Responsible Person
-* Accountable Executive
-* MT Sponsor
+Mandatory dropdown.
 
 ⸻
 
-AC4 – New Initiative (NICRA) Landing Page Export
+Process Information
 
-For assessments created under the New Initiative (NICRA) initiative category, the landing page export shall include the applicable columns, including but not limited to:
-
-* New Initiative Name
-* New Initiative Summary
-* Senior Manager / Group Business Head
+* Process Name (Mandatory)
+* Business Owner (Mandatory employee lookup)
+* Process Description (Mandatory)
 
 ⸻
 
-AC5 – Other Landing Page Export
+Ownership & Coverage
 
-For assessments created under the Other initiative category, the landing page export shall include the applicable columns, including but not limited to:
-
-* New Initiative Name
-* New Initiative Summary
-* Approver
+* Country Coverage (Mandatory dropdown)
+* Business Function (Mandatory searchable multi-select)
+* CFCR RFO(s) (Mandatory searchable multi-select)
 
 ⸻
 
-AC6 – Organisational Change Landing Page Export
+Change Information
 
-For assessments created under the Organisational Change initiative category, the landing page export shall include the applicable columns configured for the Organisational Change assessment.
-
-⸻
-
-AC7 – Assessment Workflow Export
-
-* The system shall enhance the Assessment Workflow Export for Non-Investment Funded Change assessments.
-* The existing worksheet structure (Risk Assessment, Mitigation Plan, RFO Comments, Endorsement, etc.) shall remain unchanged.
-* The header section of the workflow export shall display the initiation details applicable to the selected initiative category.
-* The existing Investment Funded Change header fields (e.g. Investment ID, Programme ID, Programme Name, Project ID and Project Name) shall be replaced with the corresponding initiative category-specific fields.
-* Only the fields applicable to the selected initiative category shall be populated in the workflow export.
+* Change Summary (Mandatory)
 
 ⸻
 
-AC8 – Existing Behaviour
+Supporting Documentation
 
-* Existing export functionality for Investment Funded Change assessments shall remain unchanged.
-* Existing export formats for other assessment types shall continue to function without impact.
+* Supporting Documentation (Optional file upload)
+
+⸻
+
+Behaviour
+
+* Business Owner shall support employee lookup using Bank ID or employee name.
+* Country Coverage shall support selection of Group or configured Country values.
+* Business Function shall support searchable multi-selection.
+* CFCR RFO(s) shall be manually selected from the configured RFO list.
+* Trigger Event / Driver shall be mandatory.
+* The assessment shall not be created until all mandatory fields are completed.
+* Supporting Documentation, when uploaded, shall be stored against the assessment and be available throughout the assessment lifecycle.
