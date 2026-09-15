@@ -1,474 +1,713 @@
-Yes. Forget the Copilot workbook. We’ll do the actual cases manually here, based on the COI flow we’ve already worked through.
+Yes. Now we have the actual BRD field names from the screenshots, so we can do this properly from scratch.
 
-I’ll keep it exactly to:
+I’m treating the COI categories as:
 
-Test Scenario | Test Steps | Expected Result
+1. New Product / Product Change
+2. Corporate Action
+3. NICRA – New Initiatives / Change Risk Assessment
+4. Other
 
-No Preconditions, no Test Data, no Status, no Evidence columns.
+And the UAT granularity is locked:
 
-I’m also separating PM and RFO, and I’m treating Status / Created By / Created Date / Last Updated Date / Completed Date as common columns for the landing page/export.
+ONE test case = ONE validation = ONE row.
+No “validate all fields” or “select each category” summary cases.
 
-⸻
+For every applicable category, I’m also including the common landing-page fields:
 
-COI — PM / Maker
+Status, Created By, Created Date, Last Updated Date, Completed Date
 
-1. Initiative
+For long-text fields such as Transaction and Rationale, I’m separately testing:
 
-Test Scenario	Test Steps	Expected Result
-Verify PM can access the COI Initiate Risk Assessment page	1. Login as COI PM/Maker. 2. Navigate to Change Risk Assessment. 3. Select COI. 4. Click Initiate Risk Assessment.	COI Initiate Risk Assessment page is displayed successfully.
-Verify Initiative Category field	1. Open Initiate Risk Assessment. 2. Click Initiative Category.	Initiative Category field is displayed and selectable.
-Verify COI category options	1. Open Initiative Category dropdown. 2. Review available options.	All COI-configured initiative categories are displayed.
-Verify category selection	1. Select a COI category.	The selected category is displayed and the relevant fields are loaded.
-Verify category switching	1. Select one category. 2. Change the selection to another category.	The page refreshes to display the fields applicable to the newly selected category.
-Verify mandatory-field validation	1. Leave mandatory fields blank. 2. Click Submit.	Submission is prevented and validation is displayed for the mandatory fields.
-Verify Project/Initiative Name field	1. Enter a valid value in the applicable name field.	The value is accepted and retained.
-Verify Initiative Summary / description field	1. Enter valid text in the applicable summary/description field.	The entered text is accepted and retained.
-Verify Responsible Person	1. Select/search for a Responsible Person where applicable.	The selected Responsible Person is displayed correctly.
-Verify Transaction field	1. Enter transaction details.	Transaction details are accepted and retained.
-Verify Rationale field	1. Enter rationale details.	Rationale details are accepted and retained.
-Verify Accountable Executive / Key Stakeholder	1. Select the applicable person.	The selected person is displayed correctly.
-Verify MT Sponsor	1. Select the applicable MT Sponsor.	The selected MT Sponsor is displayed correctly.
-Verify Business Function	1. Open Business Function. 2. Select the applicable function.	The selected Business Function is displayed correctly.
-Verify CFCR RFO population	1. Select the applicable Business Function.	The corresponding CFCR RFO is populated/displayed according to the configured mapping.
-Verify Country Coverage	1. Select the applicable country coverage.	The selected country coverage is accepted and displayed.
-Verify Approver field where applicable	1. Search/select the required Approver.	The selected Approver is displayed correctly.
-Verify data retention before submission	1. Enter valid information in the initiation fields. 2. Navigate through the page without submitting.	Entered information remains available and is not unexpectedly cleared.
-Verify successful initiation	1. Complete all mandatory fields with valid information. 2. Click Submit.	COI assessment is successfully created and the user is taken to the appropriate workflow stage/landing page.
-Verify submission with incomplete information	1. Complete only some mandatory fields. 2. Click Submit.	Assessment is not submitted and the relevant missing mandatory fields are highlighted.
-Verify created Case ID	1. Successfully submit a COI assessment. 2. Open the created assessment.	A unique Case ID is generated and associated with the assessment.
-Verify initiated data appears in workflow	1. Submit a COI assessment. 2. Open the assessment workflow.	Information entered during initiation is displayed correctly in the workflow.
+* the Click to View hyperlink
+* the popup
+* the complete underlying text
+
+Below is the full manual version you can put directly into Excel.
 
 ⸻
 
-2. PM — Landing Page
+COI — PM / MAKER TEST CASES
 
-Access and views
+1. PM — LANDING PAGE — COMMON FUNCTIONALITY
 
-Test Scenario	Test Steps	Expected Result
-Verify PM can access COI landing page	1. Login as PM. 2. Navigate to COI.	COI landing page is displayed.
-Verify My Cases view	1. Select My Cases.	Only cases associated with the PM’s access/ownership are displayed.
-Verify All Cases view	1. Select All Cases.	All COI cases accessible to the PM are displayed.
-Verify switching from My Cases to All Cases	1. Open My Cases. 2. Select All Cases.	Grid refreshes and displays the records applicable to All Cases.
-Verify switching from All Cases to My Cases	1. Open All Cases. 2. Select My Cases.	Grid refreshes and displays the records applicable to My Cases.
-
-Category
-
-Test Scenario	Test Steps	Expected Result
-Verify Initiative Category dropdown on landing page	1. Open COI landing page. 2. Click Initiative Category dropdown.	Available COI categories are displayed.
-Verify New Product / Product Change category	1. Select New Product / Product Change.	Grid displays the records belonging to the selected category and its applicable columns.
-Verify Corporate Action category	1. Select Corporate Action.	Grid displays Corporate Action records and applicable Corporate Action columns.
-Verify NICRA category	1. Select NICRA.	Grid displays NICRA records and applicable NICRA columns.
-Verify Other category	1. Select Other.	Grid displays Other records and applicable Other columns.
-Verify category switching	1. Select one category. 2. Select another category.	Grid refreshes correctly and displays the selected category’s records/columns.
-
-Status tiles
-
-Test Scenario	Test Steps	Expected Result
-Verify In Progress tile	1. Select In Progress.	Cases currently in progress are displayed.
-Verify Pending Endorsement tile	1. Select Pending Endorsement.	Cases pending RFO endorsement are displayed.
-Verify Refer Back tile	1. Select Refer Back.	Cases referred back to the PM are displayed.
-Verify Endorsement by RFO tile	1. Select Endorsement by RFO.	Cases for which RFO endorsement activity is applicable/ongoing are displayed.
-Verify Completed tile	1. Select Completed.	Completed COI assessments are displayed.
-Verify status count	1. Note the count displayed on a status tile. 2. Open the tile. 3. Count/verify displayed records.	The status count corresponds to the applicable records.
-Verify status count updates	1. Complete an action that changes case status. 2. Return to landing page.	Relevant status count is updated accordingly.
-
-Grid functions
-
-Test Scenario	Test Steps	Expected Result
-Verify Search	1. Enter a valid searchable value.	Matching records are displayed.
-Verify invalid Search	1. Enter a value that does not match any record.	No matching records are displayed.
-Verify clearing Search	1. Enter a search value. 2. Clear the search.	Full applicable record list is restored.
-Verify Filter	1. Open filter. 2. Select a valid filter value.	Grid displays only records matching the filter.
-Verify Clear Filter	1. Apply a filter. 2. Clear the filter.	All applicable records are restored.
-Verify ascending sort	1. Select a sortable column. 2. Apply ascending sort.	Records are arranged in ascending order.
-Verify descending sort	1. Select a sortable column. 2. Apply descending sort.	Records are arranged in descending order.
-Verify pagination	1. Navigate through available pages.	Correct records are displayed on each page.
-Verify page navigation	1. Select next/previous page.	User moves to the correct page and corresponding records are displayed.
-Verify horizontal scrolling	1. Scroll horizontally across the grid.	All configured columns can be accessed without data loss.
+ID	Test Scenario	Test Steps	Expected Result
+PM-LP-001	Verify COI landing page access	Login as PM and navigate to COI.	COI landing page is displayed.
+PM-LP-002	Verify My Cases view	Select My Cases.	PM’s applicable COI cases are displayed.
+PM-LP-003	Verify All Cases view	Select All Cases.	All COI cases accessible to PM are displayed.
+PM-LP-004	Switch My Cases to All Cases	Select My Cases, then select All Cases.	Grid refreshes to display All Cases.
+PM-LP-005	Switch All Cases to My Cases	Select All Cases, then select My Cases.	Grid refreshes to display My Cases.
+PM-LP-006	Verify Initiative Category dropdown	Open the Initiative Category dropdown.	All configured COI categories are displayed.
+PM-LP-007	Verify New Product / Product Change category	Select New Product / Product Change.	Applicable New Product / Product Change records are displayed.
+PM-LP-008	Verify Corporate Action category	Select Corporate Action.	Applicable Corporate Action records are displayed.
+PM-LP-009	Verify NICRA category	Select NICRA.	Applicable NICRA records are displayed.
+PM-LP-010	Verify Other category	Select Other.	Applicable Other records are displayed.
+PM-LP-011	Verify category-specific grid refresh	Switch between COI categories.	Category-specific records and columns refresh correctly.
+PM-LP-012	Verify In Progress tile	Select In Progress.	In-progress COI cases are displayed.
+PM-LP-013	Verify Pending Endorsement tile	Select Pending Endorsement.	Pending Endorsement cases are displayed.
+PM-LP-014	Verify Refer Back tile	Select Refer Back.	Referred-back cases are displayed.
+PM-LP-015	Verify Endorsement by RFO tile	Select Endorsement by RFO.	Applicable RFO endorsement cases are displayed.
+PM-LP-016	Verify Completed tile	Select Completed.	Completed COI cases are displayed.
+PM-LP-017	Verify status count	Compare status tile count with corresponding records.	Status count matches the applicable records.
+PM-LP-018	Verify search with valid value	Enter a valid searchable value.	Matching records are displayed.
+PM-LP-019	Verify search with invalid value	Enter a non-existing value.	No matching records are displayed.
+PM-LP-020	Verify filter	Apply a valid grid filter.	Only matching records are displayed.
+PM-LP-021	Verify clear filter	Apply a filter and select Clear.	All applicable records are restored.
+PM-LP-022	Verify ascending sort	Sort a sortable column in ascending order.	Records are sorted in ascending order.
+PM-LP-023	Verify descending sort	Sort a sortable column in descending order.	Records are sorted in descending order.
+PM-LP-024	Verify pagination	Navigate between grid pages.	Correct records are displayed on each page.
+PM-LP-025	Verify horizontal scrolling	Scroll horizontally across the grid.	All configured columns are accessible.
 
 ⸻
 
-3. PM — Landing Page Columns
+2. PM — LANDING PAGE — NEW PRODUCT / PRODUCT CHANGE
 
-Corporate Action example
+BRD fields
 
-Test Scenario	Test Steps	Expected Result
-Verify Case ID column	1. Select Corporate Action. 2. Review Case ID column.	Correct Case ID is displayed for each case.
-Verify Trigger Event / Driver column	1. Review Trigger Event / Driver.	Correct Trigger Event / Driver is displayed.
-Verify Project Name column	1. Review Project Name.	Correct Project Name is displayed.
-Verify Responsible Person column	1. Review Responsible Person.	Correct Responsible Person is displayed.
-Verify Transaction column	1. Review Transaction column.	Transaction is displayed using the configured Click to View behaviour where applicable.
-Verify Rationale column	1. Review Rationale column.	Rationale is displayed using the configured Click to View behaviour where applicable.
-Verify Accountable Executive / Key Stakeholder column	1. Review the column.	Correct Accountable Executive / Key Stakeholder is displayed.
-Verify MT Sponsor column	1. Review MT Sponsor.	Correct MT Sponsor is displayed.
-Verify Business Function column	1. Review Business Function.	Correct Business Function is displayed.
-Verify CFCR RFO column	1. Review CFCR RFO.	Correct CFCR RFO is displayed.
-Verify Status column	1. Review Status.	Current status of each case is displayed correctly.
-Verify Created By column	1. Review Created By.	Correct creator is displayed.
-Verify Created Date column	1. Review Created Date.	Correct creation date is displayed.
-Verify Last Updated Date column	1. Review Last Updated Date.	Correct last updated date is displayed.
-Verify Completed Date column	1. Review Completed Date for completed/non-completed cases.	Completed Date is displayed correctly for completed cases and remains appropriately blank/not applicable for cases not completed.
-Verify Transaction Click to View	1. Click Transaction / Click to View.	Full Transaction content is displayed.
-Verify Rationale Click to View	1. Click Rationale / Click to View.	Full Rationale content is displayed.
-Verify Transaction content accuracy	1. Open Transaction. 2. Compare with data entered in workflow.	Full Transaction content matches the workflow data.
-Verify Rationale content accuracy	1. Open Rationale. 2. Compare with data entered in workflow.	Full Rationale content matches the workflow data.
+The BRD screenshot gives us:
 
-For New Product/Product Change, NICRA and Other, create the same individual column-level cases using the exact category-specific columns shown in the application.
-The five common cases — Status, Created By, Created Date, Last Updated Date, Completed Date — remain applicable to every category.
+* Programme code*
+* Programme Name*
+* Product manager*
+* Business head / Product head*
+* Business line*
+* CFCR RFO*
+* Product description & scope*
+* Applicable to:
+    * Islamic variant?
+    * Sustainable finance variant?
 
-⸻
+Individual UAT cases
 
-4. PM — Landing Page Export
-
-Test Scenario	Test Steps	Expected Result
-Verify Landing Page Export option	1. Open COI landing page. 2. Review available actions.	Export option is available to the PM.
-Verify My Cases export	1. Select My Cases. 2. Export the grid.	Export contains the applicable My Cases records.
-Verify All Cases export	1. Select All Cases. 2. Export the grid.	Export contains the applicable All Cases records.
-Verify category export	1. Select a COI category. 2. Export.	Export contains records for the selected category.
-Verify export download	1. Click Export.	Export file downloads successfully.
-Verify export file opens	1. Open downloaded file.	File opens successfully without corruption.
-Verify exported Case ID	1. Open export. 2. Review Case ID.	Exported Case ID matches the landing page.
-Verify exported category-specific fields	1. Open export. 2. Review each category-specific column.	Exported values match the landing page values.
-Verify exported Status	1. Review Status in export.	Status matches the landing page.
-Verify exported Created By	1. Review Created By.	Value matches the landing page.
-Verify exported Created Date	1. Review Created Date.	Value matches the landing page.
-Verify exported Last Updated Date	1. Review Last Updated Date.	Value matches the landing page.
-Verify exported Completed Date	1. Review Completed Date.	Value matches the landing page.
-Verify Transaction export	1. Export a Corporate Action record. 2. Review Transaction.	Complete Transaction information is exported without unintended truncation.
-Verify Rationale export	1. Export a Corporate Action record. 2. Review Rationale.	Complete Rationale information is exported without unintended truncation.
-Verify filtered export	1. Apply a filter. 2. Export.	Export reflects the applicable filtered records.
-Verify searched export	1. Perform a search. 2. Export.	Export reflects the applicable search results.
-Verify status-based export	1. Select a status tile. 2. Export.	Export contains the records applicable to the selected status.
-Verify export data accuracy	1. Compare exported data against landing page data.	Exported information accurately matches the landing page.
+ID	Test Scenario	Test Steps	Expected Result
+PM-NP-LP-001	Verify Programme code	Open New Product / Product Change records and review Programme code.	Programme code is displayed correctly.
+PM-NP-LP-002	Verify Programme code format	Review a valid Programme code.	Programme code follows the configured PPG-XXXXX format and character rules.
+PM-NP-LP-003	Verify Programme Name	Review Programme Name.	Programme Name is displayed correctly.
+PM-NP-LP-004	Verify Product manager	Review Product manager.	Product manager displays the correct user.
+PM-NP-LP-005	Verify Business head / Product head	Review Business head / Product head.	Business head / Product head displays the correct user.
+PM-NP-LP-006	Verify Business line	Review Business line.	Business line displays the correct value.
+PM-NP-LP-007	Verify CFCR RFO	Review CFCR RFO.	CFCR RFO displays the applicable RFO.
+PM-NP-LP-008	Verify Product description & scope	Review Product description & scope.	Product description & scope displays the correct value.
+PM-NP-LP-009	Verify Product description & scope full text	Open the long-text value where Click to View is available.	Full Product description & scope is displayed.
+PM-NP-LP-010	Verify Applicable to — Islamic variant	Review Applicable to: Islamic variant?.	Islamic variant selection is displayed correctly.
+PM-NP-LP-011	Verify Applicable to — Sustainable finance variant	Review Applicable to: Sustainable finance variant?.	Sustainable finance variant selection is displayed correctly.
+PM-NP-LP-012	Verify Status	Review Status.	Status displays the current case status.
+PM-NP-LP-013	Verify Created By	Review Created By.	Created By displays the correct creator.
+PM-NP-LP-014	Verify Created Date	Review Created Date.	Created Date displays the correct creation date.
+PM-NP-LP-015	Verify Last Updated Date	Review Last Updated Date.	Last Updated Date displays the latest update date.
+PM-NP-LP-016	Verify Completed Date	Review Completed Date for a completed case.	Completed Date displays the correct completion date.
+PM-NP-LP-017	Verify Completed Date for incomplete case	Review an incomplete case.	Completed Date is blank/not applicable.
 
 ⸻
 
-5. PM — Workflow
+3. PM — LANDING PAGE — CORPORATE ACTION
 
-General workflow
+BRD fields
 
-Test Scenario	Test Steps	Expected Result
-Verify PM can open assessment	1. Open COI landing page. 2. Select a case.	Selected COI assessment opens successfully.
-Verify workflow is displayed	1. Open an assessment.	COI workflow is displayed.
-Verify workflow stages	1. Review workflow progress indicator.	Configured COI workflow stages are displayed in the correct sequence.
-Verify current stage	1. Open an assessment in progress.	Current workflow stage is clearly indicated.
-Verify current status	1. Open assessment.	Current assessment status is displayed correctly.
-Verify Details panel	1. Open Details panel.	Case information is displayed.
-Verify Info tab	1. Open Info tab.	Assessment information is displayed.
-Verify History tab	1. Open History tab.	Relevant assessment history/audit information is displayed.
-Verify Case ID in Details	1. Open Details.	Correct Case ID is displayed.
-Verify Initiative Category in Details	1. Open Details.	Correct Initiative Category is displayed.
-Verify Trigger Event / Driver in Details	1. Open Details.	Correct Trigger Event / Driver is displayed where applicable.
-Verify Project Name in Details	1. Open Details.	Correct Project Name is displayed where applicable.
-Verify Responsible Person in Details	1. Open Details.	Correct Responsible Person is displayed.
-Verify Transaction in Details	1. Open Details. 2. Select Transaction/Click to View.	Complete Transaction information is displayed.
-Verify Rationale in Details	1. Open Details. 2. Select Rationale/Click to View.	Complete Rationale information is displayed.
-Verify Accountable Executive	1. Open Details.	Correct Accountable Executive is displayed.
-Verify MT Sponsor	1. Open Details.	Correct MT Sponsor is displayed.
-Verify Business Function	1. Open Details.	Correct Business Function is displayed.
-Verify CFCR RFO	1. Open Details.	Correct CFCR RFO is displayed.
+Exact fields from your screenshot:
 
-⸻
+* Project Name*
+* Transaction*
+* Rationale*
+* Responsible Person*
+* Accountable Executive*
+* MT Sponsor*
+* Business/Function*
+* CFCR RFOs*
 
-6. PM — Risk Assessment
+Plus common fields.
 
-Test Scenario	Test Steps	Expected Result
-Verify Risk Assessment stage	1. Open an assessment at Risk Assessment stage.	Risk Assessment stage is displayed correctly.
-Verify risk questions	1. Navigate through the Risk Assessment.	Applicable COI risk questions are displayed.
-Verify Potential COI Risk question	1. Review Potential COI Risk.	Potential COI Risk question is displayed and is mandatory where specified.
-Verify Potential COI Risk = Yes	1. Select Yes for Potential COI Risk.	Applicable follow-up risk information is displayed/enabled.
-Verify Potential COI Risk = No	1. Select No.	Applicable follow-up fields behave according to the requirement.
-Verify mandatory Potential COI Risk	1. Leave Potential COI Risk unanswered. 2. Attempt to proceed.	User cannot proceed and mandatory validation is displayed.
-Verify risk response persistence	1. Enter risk responses. 2. Navigate through workflow.	Entered risk responses are retained.
-Verify PM can edit risk responses	1. Open Risk Assessment as PM. 2. Modify an editable response.	PM can modify permitted responses.
-Verify risk response data appears in subsequent stage	1. Complete Risk Assessment. 2. Navigate to next applicable stage.	Relevant risk assessment information is carried forward correctly.
-
-⸻
-
-7. PM — Mitigation Plan
-
-Test Scenario	Test Steps	Expected Result
-Verify Mitigation Plan stage	1. Complete applicable Risk Assessment information. 2. Navigate to Mitigation Plan.	Mitigation Plan stage is displayed.
-Verify mitigation plan creation	1. Add a mitigation plan. 2. Enter required information.	Mitigation plan is created successfully.
-Verify mitigation target	1. Enter target information.	Target is accepted and retained.
-Verify action owner	1. Select Action Owner.	Available applicable owners are displayed and selected value is retained.
-Verify mitigation status	1. Open mitigation status dropdown.	Configured status values are displayed.
-Verify supporting document upload	1. Upload a supporting document where required/available.	Document is uploaded and associated with the mitigation plan.
-Verify supporting document is optional where specified	1. Leave optional supporting document blank. 2. Proceed.	User can proceed without the optional document.
-Verify mitigation plan mapping	1. Select the applicable COI question/risk item. 2. Map mitigation plan to it.	Mitigation plan is mapped to the selected item.
-Verify mitigation plan mapping to multiple questions	1. Create one mitigation plan. 2. Select multiple applicable questions.	One mitigation plan can be mapped to the permitted multiple questions.
-Verify mitigation plan data persistence	1. Save/proceed. 2. Return to Mitigation Plan.	Previously entered mitigation information is retained.
-Verify mandatory mitigation information	1. Leave required mitigation information blank. 2. Attempt to proceed.	User cannot proceed and the required field validation is displayed.
+ID	Test Scenario	Test Steps	Expected Result
+PM-CA-LP-001	Verify Project Name	Review Project Name.	Project Name displays the correct value.
+PM-CA-LP-002	Verify Transaction	Review Transaction.	Transaction displays Click to View.
+PM-CA-LP-003	Verify Rationale	Review Rationale.	Rationale displays Click to View.
+PM-CA-LP-004	Verify Responsible Person	Review Responsible Person.	Responsible Person displays the correct user.
+PM-CA-LP-005	Verify Accountable Executive	Review Accountable Executive.	Accountable Executive displays the correct user.
+PM-CA-LP-006	Verify MT Sponsor	Review MT Sponsor.	MT Sponsor displays the correct user.
+PM-CA-LP-007	Verify Business/Function	Review Business/Function.	Business/Function displays the correct value(s).
+PM-CA-LP-008	Verify multiple Business/Function values	Open a case with multiple Business/Function selections.	All selected Business/Function values are displayed.
+PM-CA-LP-009	Verify CFCR RFOs	Review CFCR RFOs.	Applicable CFCR RFOs are displayed.
+PM-CA-LP-010	Verify multiple CFCR RFOs	Open a case with multiple RFOs.	All selected CFCR RFOs are displayed.
+PM-CA-LP-011	Verify Status	Review Status.	Status displays the current case status.
+PM-CA-LP-012	Verify Created By	Review Created By.	Created By displays the correct creator.
+PM-CA-LP-013	Verify Created Date	Review Created Date.	Created Date displays the correct date.
+PM-CA-LP-014	Verify Last Updated Date	Review Last Updated Date.	Last Updated Date displays the latest update date.
+PM-CA-LP-015	Verify Completed Date	Review Completed Date.	Completed Date displays the completion date for completed cases.
+PM-CA-LP-016	Verify Transaction hyperlink	Click Transaction / Click to View.	Transaction popup opens.
+PM-CA-LP-017	Verify Transaction popup content	Review the popup.	Complete Transaction text is displayed.
+PM-CA-LP-018	Verify Transaction text accuracy	Compare popup value with source/workflow value.	Complete Transaction text matches the stored value.
+PM-CA-LP-019	Verify Rationale hyperlink	Click Rationale / Click to View.	Rationale popup opens.
+PM-CA-LP-020	Verify Rationale popup content	Review the popup.	Complete Rationale text is displayed.
+PM-CA-LP-021	Verify Rationale text accuracy	Compare popup value with source/workflow value.	Complete Rationale text matches the stored value.
 
 ⸻
 
-8. PM — Pending Endorsement / RFO Coverage
+4. PM — LANDING PAGE — NICRA
 
-Test Scenario	Test Steps	Expected Result
-Verify Pending Endorsement stage	1. Complete applicable PM assessment information. 2. Submit for endorsement.	Assessment moves to Pending Endorsement.
-Verify assigned RFO	1. Open assessment after submission.	Applicable RFO/coverage information is displayed.
-Verify RFO coverage status	1. Open RFO/Coverage status section.	Correct RFO coverage status is displayed.
-Verify RFO comments visibility	1. Open RFO comments after RFO has provided comments.	Relevant RFO comments are visible to PM.
-Verify RFO endorsement status	1. Open assessment after RFO endorsement.	RFO endorsement status is updated correctly.
-Verify RFO refer-back status	1. Open assessment after RFO refers back.	Assessment status changes to Refer Back and PM can review the feedback.
-Verify PM can review refer-back comments	1. Open referred-back assessment.	RFO refer-back comments are displayed to PM.
-Verify PM can amend referred-back assessment	1. Open a referred-back assessment. 2. Modify the required information.	PM can make permitted amendments.
-Verify resubmission after refer back	1. Correct the referred-back information. 2. Resubmit.	Assessment is resubmitted for RFO review.
+Exact BRD fields from your screenshot
 
-⸻
+* New Initiative Name*
+* New Initiative Summary*
+* First Line*
+* Senior Manager / Group Business Head*
+* Country Coverage*
+* Business/Function*
+* CFCR RFOs*
 
-9. PM — Offline Endorsement / Final Submission
+Important BRD behaviour:
 
-Test Scenario	Test Steps	Expected Result
-Verify Offline Endorsement option where applicable	1. Open assessment requiring offline endorsement.	Offline endorsement functionality is available as configured.
-Verify PM uploads offline endorsement evidence	1. Obtain offline endorsement evidence. 2. Upload the evidence.	Evidence is uploaded successfully and associated with the assessment.
-Verify uploaded evidence	1. Open uploaded evidence.	Correct endorsement evidence is available for review.
-Verify final endorsement information	1. Review RFO endorsement/coverage information.	Endorsement information is accurately displayed.
-Verify final submission	1. Complete required endorsement/coverage information. 2. Perform final submission.	Assessment is submitted successfully for final completion.
-Verify completed status	1. Complete the required final workflow action. 2. Return to landing page.	Assessment moves to Completed status.
-Verify Completed Date	1. Open completed assessment.	Completed Date is populated correctly.
-Verify history after completion	1. Open History.	Final submission/completion activity is recorded in the history.
+* First Line → logged-in User PSID / same IFC logic
+* Senior Manager / Group Business Head → PSID
+* Country Coverage → maximum 5 countries; multiple countries can be selected
+* Business/Function → multiple can be selected
+* CFCR RFOs → pre-populated from CRHS; multiple RFOs can be selected
 
-⸻
-
-10. PM — Workflow Export
-
-Test Scenario	Test Steps	Expected Result
-Verify Workflow Export option	1. Open COI workflow. 2. Review available actions.	Workflow Export option is available.
-Verify workflow export download	1. Select Workflow Export.	Export file downloads successfully.
-Verify workflow export file	1. Open downloaded file.	File opens successfully.
-Verify exported Case ID	1. Review Case ID in export.	Case ID matches workflow.
-Verify exported Initiative Category	1. Review Initiative Category.	Value matches workflow.
-Verify exported category-specific information	1. Review all applicable category-specific fields.	Values match workflow information.
-Verify exported Transaction	1. Review Transaction in export.	Complete Transaction information is exported.
-Verify exported Rationale	1. Review Rationale in export.	Complete Rationale information is exported.
-Verify exported Risk Assessment information	1. Review risk assessment fields.	Export contains the applicable workflow risk assessment information.
-Verify exported Mitigation Plan information	1. Review mitigation plan fields.	Export contains the applicable mitigation information.
-Verify exported RFO information	1. Review RFO-related information.	Correct RFO information is exported.
-Verify exported RFO status	1. Review RFO status.	Exported RFO status matches workflow.
-Verify exported RFO comments	1. Review RFO comments.	Applicable comments are exported correctly.
-Verify exported Status	1. Review Status.	Status matches workflow.
-Verify exported Created By	1. Review Created By.	Value matches workflow.
-Verify exported Created Date	1. Review Created Date.	Value matches workflow.
-Verify exported Last Updated Date	1. Review Last Updated Date.	Value matches workflow.
-Verify exported Completed Date	1. Review Completed Date.	Value matches workflow.
-Verify long text is not truncated	1. Export an assessment containing long Transaction/Rationale content. 2. Review export.	Complete long-text content is available in the export.
-Verify export data matches workflow	1. Compare exported information against workflow UI.	Exported data accurately matches workflow information.
-Verify export after refer back	1. Export a referred-back/re-submitted assessment.	Export reflects the latest applicable workflow information.
-Verify export after completion	1. Export a completed assessment.	Export contains the final completed assessment information.
+ID	Test Scenario	Test Steps	Expected Result
+PM-NICRA-LP-001	Verify New Initiative Name	Select NICRA and review New Initiative Name.	New Initiative Name displays the correct value.
+PM-NICRA-LP-002	Verify New Initiative Summary	Review New Initiative Summary.	New Initiative Summary displays the correct value.
+PM-NICRA-LP-003	Verify First Line	Review First Line.	First Line displays the correct user/value.
+PM-NICRA-LP-004	Verify Senior Manager / Group Business Head	Review Senior Manager / Group Business Head.	Correct user is displayed.
+PM-NICRA-LP-005	Verify Country Coverage	Review Country Coverage.	Selected country/group coverage is displayed correctly.
+PM-NICRA-LP-006	Verify multiple Country Coverage values	Open a case with multiple countries.	All selected Country Coverage values are displayed.
+PM-NICRA-LP-007	Verify maximum Country Coverage	Create/select a case with five countries.	Maximum of five countries can be selected.
+PM-NICRA-LP-008	Verify Business/Function	Review Business/Function.	Selected Business/Function values are displayed correctly.
+PM-NICRA-LP-009	Verify multiple Business/Function values	Open a case with multiple selections.	All selected Business/Function values are displayed.
+PM-NICRA-LP-010	Verify CFCR RFOs	Review CFCR RFOs.	Applicable CFCR RFOs are displayed.
+PM-NICRA-LP-011	Verify multiple CFCR RFOs	Open a case with multiple RFOs.	All selected CFCR RFOs are displayed.
+PM-NICRA-LP-012	Verify Status	Review Status.	Status displays the current case status.
+PM-NICRA-LP-013	Verify Created By	Review Created By.	Created By displays the correct creator.
+PM-NICRA-LP-014	Verify Created Date	Review Created Date.	Created Date displays the correct date.
+PM-NICRA-LP-015	Verify Last Updated Date	Review Last Updated Date.	Last Updated Date displays the latest update date.
+PM-NICRA-LP-016	Verify Completed Date	Review Completed Date.	Completed Date displays the completion date where applicable.
+PM-NICRA-LP-017	Verify New Initiative Summary full text	Open the long-text value using Click to View where available.	Full New Initiative Summary is displayed.
 
 ⸻
 
-COI — RFO
+5. PM — LANDING PAGE — OTHER
 
-Now the RFO suite.
+Exact BRD fields from your screenshot
 
-No Initiative sheet for RFO.
+* New Initiative Name*
+* New Initiative Summary*
+* First Line*
+* Approver*
+* Country Coverage*
+* Business/Function*
+* CFCR RFOs*
 
-The RFO starts from the landing page and works through the assessment assigned to them.
-
-⸻
-
-11. RFO — Landing Page
-
-Test Scenario	Test Steps	Expected Result
-Verify RFO can access COI landing page	1. Login as RFO. 2. Navigate to COI.	COI landing page is displayed successfully.
-Verify RFO My Cases	1. Select My Cases.	Cases assigned/relevant to the RFO are displayed according to RFO access.
-Verify RFO All Cases access	1. Select All Cases where available.	RFO sees only records permitted by their access rights.
-Verify category dropdown	1. Open Initiative Category dropdown.	Available COI categories are displayed.
-Verify New Product / Product Change	1. Select New Product / Product Change.	Applicable records and columns are displayed.
-Verify Corporate Action	1. Select Corporate Action.	Applicable Corporate Action records and columns are displayed.
-Verify NICRA	1. Select NICRA.	Applicable NICRA records and columns are displayed.
-Verify Other	1. Select Other.	Applicable Other records and columns are displayed.
-Verify category switching	1. Select one category. 2. Select another.	Grid refreshes to the selected category.
-Verify In Progress tile	1. Select In Progress.	Applicable In Progress cases are displayed.
-Verify Pending Endorsement tile	1. Select Pending Endorsement.	Applicable Pending Endorsement cases are displayed.
-Verify Refer Back tile	1. Select Refer Back.	Applicable Refer Back cases are displayed according to RFO access.
-Verify Endorsement by RFO tile	1. Select Endorsement by RFO.	Applicable RFO endorsement cases are displayed.
-Verify Completed tile	1. Select Completed.	Applicable completed cases are displayed.
-Verify status counts	1. Review each status count. 2. Select the relevant status.	Count and displayed records are consistent.
-Verify Search	1. Enter a valid search value.	Matching accessible records are displayed.
-Verify invalid Search	1. Enter a non-matching value.	No matching records are displayed.
-Verify Filter	1. Apply a valid filter.	Only matching accessible records are displayed.
-Verify Clear Filter	1. Apply filter. 2. Clear filter.	Original accessible record list is restored.
-Verify ascending sort	1. Sort a column ascending.	Records are sorted correctly.
-Verify descending sort	1. Sort a column descending.	Records are sorted correctly.
-Verify Pagination	1. Navigate through pages.	Correct accessible records are displayed on each page.
-Verify horizontal scrolling	1. Scroll horizontally through the grid.	All configured columns can be viewed.
+ID	Test Scenario	Test Steps	Expected Result
+PM-OTH-LP-001	Verify New Initiative Name	Select Other and review New Initiative Name.	New Initiative Name displays the correct value.
+PM-OTH-LP-002	Verify New Initiative Summary	Review New Initiative Summary.	New Initiative Summary displays the correct value.
+PM-OTH-LP-003	Verify First Line	Review First Line.	First Line displays the correct user/value.
+PM-OTH-LP-004	Verify Approver	Review Approver.	Approver displays the correct user.
+PM-OTH-LP-005	Verify Country Coverage	Review Country Coverage.	Selected Country Coverage is displayed correctly.
+PM-OTH-LP-006	Verify multiple Country Coverage values	Open a case with multiple countries.	All selected Country Coverage values are displayed.
+PM-OTH-LP-007	Verify Business/Function	Review Business/Function.	Selected Business/Function values are displayed.
+PM-OTH-LP-008	Verify multiple Business/Function values	Open a case with multiple selections.	All selected Business/Function values are displayed.
+PM-OTH-LP-009	Verify CFCR RFOs	Review CFCR RFOs.	Applicable CFCR RFOs are displayed.
+PM-OTH-LP-010	Verify multiple CFCR RFOs	Open a case with multiple RFOs.	All selected CFCR RFOs are displayed.
+PM-OTH-LP-011	Verify Status	Review Status.	Status displays the current case status.
+PM-OTH-LP-012	Verify Created By	Review Created By.	Created By displays the correct creator.
+PM-OTH-LP-013	Verify Created Date	Review Created Date.	Created Date displays the correct date.
+PM-OTH-LP-014	Verify Last Updated Date	Review Last Updated Date.	Last Updated Date displays the latest update date.
+PM-OTH-LP-015	Verify Completed Date	Review Completed Date.	Completed Date displays the completion date where applicable.
+PM-OTH-LP-016	Verify New Initiative Summary full text	Open the long-text value.	Full New Initiative Summary is displayed.
 
 ⸻
 
-12. RFO — Landing Page Columns
+6. PM — LANDING PAGE EXPORT
 
-Use the same category-specific columns as the PM landing page, but validate them from the RFO’s access perspective.
+The export needs to be tested for every category, not just “verify export”.
 
-Test Scenario	Test Steps	Expected Result
-Verify Case ID column	1. Open an RFO-accessible category. 2. Review Case ID.	Correct Case ID is displayed.
-Verify category-specific columns	1. Select the relevant category. 2. Review each configured category-specific column individually.	Each column displays the correct information.
-Verify Transaction Click to View	1. Select Transaction/Click to View.	Full Transaction content is displayed.
-Verify Rationale Click to View	1. Select Rationale/Click to View.	Full Rationale content is displayed.
-Verify Status	1. Review Status.	Correct current status is displayed.
-Verify Created By	1. Review Created By.	Correct creator is displayed.
-Verify Created Date	1. Review Created Date.	Correct creation date is displayed.
-Verify Last Updated Date	1. Review Last Updated Date.	Correct last updated date is displayed.
-Verify Completed Date	1. Review Completed Date.	Correct completed date is displayed for completed assessments.
-Verify RFO access restriction	1. Compare records visible to RFO with records outside RFO access.	RFO cannot access records outside the permitted scope.
-
-⸻
-
-13. RFO — Landing Page Export
-
-Test Scenario	Test Steps	Expected Result
-Verify RFO Landing Page Export option	1. Open RFO landing page.	Export option is available according to RFO permissions.
-Verify RFO export download	1. Select Export.	Export file downloads successfully.
-Verify export file opens	1. Open downloaded file.	File opens successfully.
-Verify exported Case ID	1. Review Case ID.	Exported Case ID matches landing page.
-Verify exported category-specific fields	1. Review each applicable category-specific field.	Exported values match landing page.
-Verify exported Status	1. Review Status.	Status matches landing page.
-Verify exported Created By	1. Review Created By.	Value matches landing page.
-Verify exported Created Date	1. Review Created Date.	Value matches landing page.
-Verify exported Last Updated Date	1. Review Last Updated Date.	Value matches landing page.
-Verify exported Completed Date	1. Review Completed Date.	Value matches landing page.
-Verify Transaction export	1. Export a record containing Transaction. 2. Review export.	Complete Transaction information is exported.
-Verify Rationale export	1. Export a record containing Rationale. 2. Review export.	Complete Rationale information is exported.
-Verify filtered export	1. Apply filter. 2. Export.	Export reflects applicable filtered records.
-Verify searched export	1. Search for a record. 2. Export.	Export reflects applicable search results.
-Verify status-based export	1. Select status tile. 2. Export.	Export contains applicable records.
-Verify RFO access-controlled export	1. Export records as RFO.	Export does not expose records/data outside the RFO’s permitted access.
-Verify export matches landing page	1. Compare landing page and export.	Exported data matches landing-page data.
+ID	Test Scenario	Test Steps	Expected Result
+PM-LPE-001	Verify Export option	Open COI landing page.	Export option is available.
+PM-LPE-002	Verify New Product / Product Change export	Select New Product / Product Change and export.	New Product / Product Change data is exported.
+PM-LPE-003	Verify Corporate Action export	Select Corporate Action and export.	Corporate Action data is exported.
+PM-LPE-004	Verify NICRA export	Select NICRA and export.	NICRA data is exported.
+PM-LPE-005	Verify Other export	Select Other and export.	Other data is exported.
+PM-LPE-006	Verify export download	Select Export.	Export file downloads successfully.
+PM-LPE-007	Verify export file	Open downloaded file.	Export file opens successfully.
+PM-LPE-008	Verify New Product / Product Change exported Programme code	Export New Product / Product Change and review Programme code.	Programme code matches landing page.
+PM-LPE-009	Verify exported Programme Name	Review Programme Name.	Programme Name matches landing page.
+PM-LPE-010	Verify exported Product manager	Review Product manager.	Product manager matches landing page.
+PM-LPE-011	Verify exported Business head / Product head	Review Business head / Product head.	Value matches landing page.
+PM-LPE-012	Verify exported Business line	Review Business line.	Value matches landing page.
+PM-LPE-013	Verify exported CFCR RFO	Review CFCR RFO.	Value matches landing page.
+PM-LPE-014	Verify exported Product description & scope	Review Product description & scope.	Value matches landing page.
+PM-LPE-015	Verify exported Applicable to	Review Applicable to values.	Islamic/Sustainable finance selections match landing page.
+PM-LPE-016	Verify exported Corporate Action fields	Export Corporate Action and review all CA fields.	Project Name, Transaction, Rationale, Responsible Person, Accountable Executive, MT Sponsor, Business/Function and CFCR RFOs match landing page.
+PM-LPE-017	Verify exported NICRA fields	Export NICRA and review all NICRA fields.	New Initiative Name, New Initiative Summary, First Line, Senior Manager / Group Business Head, Country Coverage, Business/Function and CFCR RFOs match landing page.
+PM-LPE-018	Verify exported Other fields	Export Other and review all Other fields.	New Initiative Name, New Initiative Summary, First Line, Approver, Country Coverage, Business/Function and CFCR RFOs match landing page.
+PM-LPE-019	Verify exported Status	Review Status in export.	Status matches landing page.
+PM-LPE-020	Verify exported Created By	Review Created By.	Created By matches landing page.
+PM-LPE-021	Verify exported Created Date	Review Created Date.	Created Date matches landing page.
+PM-LPE-022	Verify exported Last Updated Date	Review Last Updated Date.	Last Updated Date matches landing page.
+PM-LPE-023	Verify exported Completed Date	Review Completed Date.	Completed Date matches landing page.
+PM-LPE-024	Verify Transaction export	Export Corporate Action containing long Transaction.	Complete Transaction is exported.
+PM-LPE-025	Verify Rationale export	Export Corporate Action containing long Rationale.	Complete Rationale is exported.
+PM-LPE-026	Verify My Cases export	Select My Cases and export.	Export contains My Cases records.
+PM-LPE-027	Verify All Cases export	Select All Cases and export.	Export contains All Cases records.
+PM-LPE-028	Verify filtered export	Apply a filter and export.	Export reflects the applied filter.
+PM-LPE-029	Verify searched export	Apply search and export.	Export reflects the search results.
+PM-LPE-030	Verify exported data accuracy	Compare exported data against landing page.	Exported data matches landing-page data.
 
 ⸻
 
-14. RFO — Workflow
+7. PM — WORKFLOW / DETAILS PANEL
 
-General access
-
-Test Scenario	Test Steps	Expected Result
-Verify RFO can open assigned assessment	1. Login as RFO. 2. Open an assessment assigned to the RFO.	Assessment opens successfully.
-Verify RFO cannot access unauthorized assessment	1. Attempt to open an assessment outside RFO access.	Access is restricted according to permissions.
-Verify workflow stages	1. Open assigned assessment.	Configured workflow stages are displayed.
-Verify current stage	1. Open assigned assessment.	Current stage is displayed correctly.
-Verify current status	1. Open assigned assessment.	Current status is displayed correctly.
-Verify Details panel	1. Open Details.	Relevant assessment details are displayed.
-Verify Info tab	1. Open Info.	Assessment information is displayed.
-Verify History tab	1. Open History.	Relevant workflow history is displayed.
-Verify Case ID	1. Open Details.	Correct Case ID is displayed.
-Verify Initiative Category	1. Open Details.	Correct category is displayed.
-Verify Project/Initiative information	1. Open Details.	PM-entered initiative/project information is displayed correctly.
-Verify Transaction	1. Open Transaction/Click to View.	Complete Transaction information is available for RFO review.
-Verify Rationale	1. Open Rationale/Click to View.	Complete Rationale information is available for RFO review.
-Verify Business Function	1. Open Details.	Correct Business Function is displayed.
-Verify CFCR RFO	1. Open Details.	Correct RFO/coverage information is displayed.
-
-⸻
-
-15. RFO — Risk Assessment Review
-
-Test Scenario	Test Steps	Expected Result
-Verify RFO can view Risk Assessment	1. Open assigned assessment. 2. Navigate to Risk Assessment.	RFO can view the applicable Risk Assessment information.
-Verify PM-entered risk responses	1. Review risk responses.	PM-entered responses are displayed correctly.
-Verify RFO read-only access	1. Attempt to edit PM-entered risk assessment information.	RFO cannot edit information that is read-only for the RFO.
-Verify Potential COI Risk response	1. Review Potential COI Risk response.	Correct response entered by PM is displayed.
-Verify supporting risk information	1. Review applicable risk information.	All relevant information is available for RFO review.
-Verify risk information consistency	1. Compare Risk Assessment information with landing/workflow information.	Information is consistent across the assessment.
+ID	Test Scenario	Test Steps	Expected Result
+PM-WF-001	Open assessment from landing page	Select a COI case.	Selected assessment opens successfully.
+PM-WF-002	Verify workflow stages	Review workflow progress indicator.	Configured COI workflow stages are displayed.
+PM-WF-003	Verify current stage	Open an in-progress assessment.	Current stage is highlighted.
+PM-WF-004	Verify current status	Review assessment status.	Current Status is displayed correctly.
+PM-WF-005	Verify Details panel	Open Details.	Details panel is displayed.
+PM-WF-006	Verify Info tab	Select Info.	Assessment information is displayed.
+PM-WF-007	Verify History tab	Select History.	Assessment history is displayed.
+PM-WF-008	Verify Case ID	Review Case ID in Details.	Case ID matches the assessment.
+PM-WF-009	Verify Initiative Category	Review Initiative Category.	Initiative Category matches the selected category.
+PM-WF-010	Verify Responsible Person	Review Responsible Person.	Correct Responsible Person is displayed.
+PM-WF-011	Verify category-specific details	Open each category assessment.	Category-specific fields match submitted values.
+PM-WF-012	Verify Transaction	Review Transaction.	Transaction is available through Click to View.
+PM-WF-013	Verify Transaction popup	Click Transaction / Click to View.	Full Transaction description opens in popup.
+PM-WF-014	Verify Rationale	Review Rationale.	Rationale is available through Click to View.
+PM-WF-015	Verify Rationale popup	Click Rationale / Click to View.	Full Rationale description opens in popup.
+PM-WF-016	Verify Accountable Executive	Review Accountable Executive.	Correct Accountable Executive is displayed.
+PM-WF-017	Verify MT Sponsor	Review MT Sponsor.	Correct MT Sponsor is displayed.
+PM-WF-018	Verify Business/Function	Review Business/Function.	Correct selected Business/Function values are displayed.
+PM-WF-019	Verify CFCR RFOs	Review CFCR RFOs.	Correct assigned CFCR RFOs are displayed.
+PM-WF-020	Verify Created By	Review Created By.	Correct creator is displayed.
+PM-WF-021	Verify Created Date	Review Created Date.	Correct creation date is displayed.
+PM-WF-022	Verify Last Updated Date	Review Last Updated Date.	Latest update date is displayed.
+PM-WF-023	Verify Completed Date	Review completed assessment.	Correct Completed Date is displayed.
 
 ⸻
 
-16. RFO — Mitigation Plan Review
+8. PM — INITIATIVE STAGE
 
-Test Scenario	Test Steps	Expected Result
-Verify RFO can view Mitigation Plan	1. Open assessment. 2. Navigate to Mitigation Plan.	RFO can view applicable mitigation plans.
-Verify mitigation target	1. Review target.	Correct target is displayed.
-Verify mitigation Action Owner	1. Review Action Owner.	Correct Action Owner is displayed.
-Verify mitigation status	1. Review mitigation status.	Correct status is displayed.
-Verify supporting document	1. Open supporting document where available.	Document is accessible to the RFO where permitted.
-Verify mitigation mapping	1. Review mitigation plan mapping to risk questions.	Mapping is displayed correctly.
-Verify multiple-question mapping	1. Review a mitigation plan mapped to multiple questions.	Mapping to the applicable multiple questions is displayed correctly.
-Verify RFO cannot edit PM mitigation information where read-only	1. Attempt to edit PM-entered mitigation information.	RFO cannot edit fields configured as read-only.
+This is PM-only because RFO does not initiate the assessment.
 
-⸻
-
-17. RFO — Endorsement
-
-Test Scenario	Test Steps	Expected Result
-Verify RFO endorsement stage	1. Open assessment pending RFO endorsement.	Endorsement stage is displayed.
-Verify RFO coverage status	1. Open RFO/Coverage status section.	Correct coverage information is displayed.
-Verify RFO can endorse	1. Complete the required RFO review. 2. Select Endorse.	RFO can submit endorsement successfully.
-Verify endorsement mandatory action	1. Attempt to complete the stage without selecting an endorsement action.	Assessment cannot be completed until the required endorsement action is selected.
-Verify endorsement comments	1. Enter comments where applicable. 2. Submit endorsement.	Comments are saved and associated with the endorsement.
-Verify endorsement status update	1. Submit endorsement. 2. Review assessment status.	RFO endorsement status is updated correctly.
-Verify PM receives endorsement status	1. Endorse assessment as RFO. 2. Login/open as PM.	PM can see the updated RFO endorsement status.
-Verify individual RFO endorsement	1. Complete endorsement for the applicable business/function coverage.	The relevant RFO endorsement is recorded correctly.
-Verify other RFO behaviour after individual endorsement	1. Have one applicable RFO complete endorsement. 2. Review the assessment for other RFOs.	System applies the configured endorsement/coverage logic and updates the requirement for other RFOs where applicable.
-
-⸻
-
-18. RFO — Refer Back
-
-Test Scenario	Test Steps	Expected Result
-Verify RFO can Refer Back	1. Open assigned assessment. 2. Select Refer Back.	Refer Back action is available where applicable.
-Verify Refer Back comments mandatory	1. Select Refer Back. 2. Leave comments blank. 3. Submit.	Refer Back cannot be submitted without the required comments.
-Verify Refer Back with comments	1. Select Refer Back. 2. Enter comments. 3. Submit.	Assessment is successfully referred back to PM.
-Verify Refer Back status	1. Refer back the assessment. 2. Review status.	Assessment status changes to Refer Back.
-Verify PM can see Refer Back comments	1. Refer back assessment. 2. Open as PM.	PM can view the RFO’s refer-back comments.
-Verify RFO sees updated assessment after resubmission	1. PM corrects the assessment. 2. PM resubmits. 3. RFO opens it.	Updated assessment is available for RFO review.
-Verify RFO can endorse after resubmission	1. Review corrected assessment. 2. Select Endorse.	RFO can endorse the resubmitted assessment.
-
-⸻
-
-19. RFO — Offline Endorsement
-
-Test Scenario	Test Steps	Expected Result
-Verify Offline Endorsement process	1. Review assessment requiring offline endorsement.	Offline endorsement process is available where configured.
-Verify offline endorsement evidence	1. Complete endorsement outside the system as required. 2. PM uploads evidence.	Evidence is associated with the assessment.
-Verify offline endorsement evidence visibility	1. Open assessment after evidence upload.	Relevant endorsement evidence is available for review according to RFO permissions.
-Verify offline endorsement status	1. Review RFO/Coverage status after offline endorsement.	Status reflects the configured offline endorsement process.
+ID	Test Scenario	Test Steps	Expected Result
+PM-INIT-001	Verify Initiative stage	Open a new COI assessment.	Initiate Risk Assessment stage is displayed.
+PM-INIT-002	Verify Initiative Category	Review the category selected for the assessment.	Correct Initiative Category is displayed.
+PM-INIT-003	Verify category-specific fields	Select each category and review the Initiative stage.	Applicable category-specific fields are displayed.
+PM-INIT-004	Verify Programme code	Enter valid Programme code for New Product / Product Change.	Programme code accepts valid value.
+PM-INIT-005	Verify Programme code format	Enter invalid Programme code format.	Invalid Programme code is rejected.
+PM-INIT-006	Verify Programme Name	Enter Programme Name.	Programme Name is accepted.
+PM-INIT-007	Verify Product manager population	Open the assessment as PM.	Product manager is populated with logged-in user’s PSID where applicable.
+PM-INIT-008	Verify Business head / Product head population	Select Business head / Product head.	Value is populated through PSID selection.
+PM-INIT-009	Verify Business line selection	Select Business line.	Valid Business line can be selected.
+PM-INIT-010	Verify CFCR RFO population	Enter/select applicable risk information.	CFCR RFO is pre-populated according to CRHS logic.
+PM-INIT-011	Verify Product description & scope	Enter valid description.	Product description & scope is accepted.
+PM-INIT-012	Verify Product description & scope mandatory	Leave field blank and proceed.	User cannot proceed without Product description & scope.
+PM-INIT-013	Verify Applicable to — Islamic variant	Select Islamic variant.	Islamic variant selection is saved.
+PM-INIT-014	Verify Applicable to — Sustainable finance variant	Select Sustainable finance variant.	Sustainable finance variant selection is saved.
+PM-INIT-015	Verify blank Applicable to	Leave both Applicable to boxes unselected where permitted.	Assessment can proceed where applicable.
+PM-INIT-016	Verify Corporate Action Project Name	Enter Project Name.	Project Name is accepted.
+PM-INIT-017	Verify Corporate Action Transaction	Enter Transaction.	Transaction is accepted.
+PM-INIT-018	Verify Corporate Action Rationale	Enter Rationale.	Rationale is accepted.
+PM-INIT-019	Verify Responsible Person	Review Responsible Person.	Responsible Person is populated through PSID.
+PM-INIT-020	Verify Accountable Executive	Select Accountable Executive using PSID.	Correct user is populated.
+PM-INIT-021	Verify MT Sponsor	Select MT Sponsor using PSID.	Correct user is populated.
+PM-INIT-022	Verify Corporate Action Business/Function	Select one or more Business/Function values.	Multiple Business/Function values can be selected.
+PM-INIT-023	Verify Corporate Action CFCR RFOs	Review CFCR RFOs.	Applicable RFOs are pre-populated from CRHS.
+PM-INIT-024	Verify NICRA New Initiative Name	Enter New Initiative Name.	New Initiative Name is accepted.
+PM-INIT-025	Verify NICRA New Initiative Summary	Enter New Initiative Summary.	New Initiative Summary is accepted.
+PM-INIT-026	Verify NICRA First Line	Review First Line.	First Line is populated according to configured logic.
+PM-INIT-027	Verify NICRA Senior Manager / Group Business Head	Select using PSID.	Correct Senior Manager / Group Business Head is populated.
+PM-INIT-028	Verify NICRA Country Coverage	Select countries.	Multiple countries can be selected up to configured maximum of five.
+PM-INIT-029	Verify NICRA Business/Function	Select Business/Function values.	Multiple Business/Function values can be selected.
+PM-INIT-030	Verify NICRA CFCR RFOs	Review RFO values.	CFCR RFOs are pre-populated from CRHS.
+PM-INIT-031	Verify Other New Initiative Name	Enter New Initiative Name.	New Initiative Name is accepted.
+PM-INIT-032	Verify Other New Initiative Summary	Enter New Initiative Summary.	New Initiative Summary is accepted.
+PM-INIT-033	Verify Other First Line	Review First Line.	First Line follows configured logic.
+PM-INIT-034	Verify Other Approver	Select Approver using PSID.	Correct Approver is populated.
+PM-INIT-035	Verify Other Country Coverage	Select countries.	Multiple Country Coverage values can be selected within configured limit.
+PM-INIT-036	Verify Other Business/Function	Select Business/Function.	Multiple Business/Function values can be selected.
+PM-INIT-037	Verify Other CFCR RFOs	Review CFCR RFOs.	RFOs are pre-populated from CRHS.
+PM-INIT-038	Verify mandatory-field validation	Leave a mandatory field blank and attempt to proceed.	User cannot proceed and mandatory field validation is displayed.
+PM-INIT-039	Verify successful Initiative submission	Complete all mandatory Initiative fields and submit.	Assessment is created successfully and proceeds to Risk Assessment.
 
 ⸻
 
-20. RFO — Final / Completion
+9. PM — RISK ASSESSMENT
 
-Test Scenario	Test Steps	Expected Result
-Verify final endorsement information	1. Review all applicable RFO endorsements.	Correct endorsement information is displayed.
-Verify all required RFO endorsements	1. Review assessment with multiple RFOs.	System accurately reflects completion/pending status of required RFO endorsements.
-Verify final completion	1. Complete the required RFO endorsement activity. 2. Complete any configured final action.	Assessment progresses to the appropriate final/completed state.
-Verify Completed status	1. Return to landing page after completion.	Assessment appears under Completed status.
-Verify Completed Date	1. Open completed assessment.	Completed Date is populated correctly.
-Verify completion history	1. Open History.	Endorsement and completion activities are recorded in the audit/history.
-
-⸻
-
-21. RFO — Workflow Export
-
-Test Scenario	Test Steps	Expected Result
-Verify RFO Workflow Export option	1. Open RFO workflow.	Workflow Export is available according to permissions.
-Verify RFO workflow export download	1. Select Export.	Export file downloads successfully.
-Verify exported Case ID	1. Review Case ID.	Case ID matches the workflow.
-Verify exported category	1. Review Initiative Category.	Category matches workflow.
-Verify exported category-specific fields	1. Review applicable category-specific fields.	Values match workflow.
-Verify exported Transaction	1. Review Transaction.	Complete Transaction information is exported.
-Verify exported Rationale	1. Review Rationale.	Complete Rationale information is exported.
-Verify exported Risk Assessment	1. Review risk assessment information.	Applicable risk assessment information is exported correctly.
-Verify exported Mitigation Plan	1. Review mitigation information.	Applicable mitigation plan information is exported correctly.
-Verify exported RFO status	1. Review RFO status.	Exported RFO status matches workflow.
-Verify exported RFO comments	1. Review RFO comments.	Applicable RFO comments are exported correctly.
-Verify exported endorsement information	1. Review endorsement information.	Endorsement details match workflow.
-Verify exported Refer Back information	1. Review a referred-back assessment export.	Relevant Refer Back information/comments are exported correctly.
-Verify exported Status	1. Review Status.	Status matches workflow.
-Verify exported Created By	1. Review Created By.	Value matches workflow.
-Verify exported Created Date	1. Review Created Date.	Value matches workflow.
-Verify exported Last Updated Date	1. Review Last Updated Date.	Value matches workflow.
-Verify exported Completed Date	1. Review Completed Date.	Value matches workflow.
-Verify long Transaction is not truncated	1. Export assessment with long Transaction. 2. Review export.	Complete Transaction is available.
-Verify long Rationale is not truncated	1. Export assessment with long Rationale. 2. Review export.	Complete Rationale is available.
-Verify export matches workflow	1. Compare workflow UI with exported data.	Exported information accurately matches the workflow.
-Verify RFO export access control	1. Export assessment as RFO. 2. Review exported information.	Export contains only information the RFO is permitted to access.
+ID	Test Scenario	Test Steps	Expected Result
+PM-RA-001	Verify Risk Assessment stage	Open a submitted COI assessment.	Risk Assessment stage is displayed.
+PM-RA-002	Verify Initiative information carry-forward	Review information from Initiative stage.	Applicable Initiative information is retained.
+PM-RA-003	Verify Potential COI Risk question	Review the question.	Potential COI Risk is displayed.
+PM-RA-004	Select Potential COI Risk = No	Select No.	Assessment proceeds without requiring COI risk details.
+PM-RA-005	Select Potential COI Risk = Yes	Select Yes.	Applicable COI risk details become required.
+PM-RA-006	Verify Potential COI Risk mandatory logic	Select Yes and attempt to proceed without required details.	User cannot proceed until required COI risk information is provided.
+PM-RA-007	Verify Risk Assessment response persistence	Enter responses and navigate away/back.	Entered responses are retained.
+PM-RA-008	Verify Risk Assessment submission	Complete required Risk Assessment information.	Assessment can proceed to Mitigation Plan.
 
 ⸻
 
-The structure you should manually create
+10. PM — MITIGATION PLAN
 
-So your COI workbook will effectively be:
+ID	Test Scenario	Test Steps	Expected Result
+PM-MP-001	Verify Mitigation Plan stage	Navigate to Mitigation Plan.	Mitigation Plan stage is displayed.
+PM-MP-002	Verify mitigation target	Enter mitigation target information.	Target information is retained.
+PM-MP-003	Verify Action Owner	Select Action Owner.	Valid Action Owner can be selected.
+PM-MP-004	Verify Action Owner PM	Select PM as Action Owner where applicable.	PM is displayed as Action Owner.
+PM-MP-005	Verify Action Owner RFO	Select RFO as Action Owner where applicable.	RFO is displayed as Action Owner.
+PM-MP-006	Verify Mitigation Plan status	Select configured mitigation Status.	Selected status is saved correctly.
+PM-MP-007	Verify supporting document	Upload supporting document.	Supporting document uploads successfully.
+PM-MP-008	Verify supporting document optional	Leave supporting document blank where optional.	User can proceed without the supporting document.
+PM-MP-009	Verify mitigation plan mapping	Map a mitigation plan to a question.	Mitigation plan is mapped correctly.
+PM-MP-010	Verify multiple-question mapping	Map one mitigation plan to multiple permitted questions.	One mitigation plan can be mapped to multiple applicable questions.
+PM-MP-011	Verify Mitigation Plan data persistence	Save and revisit the stage.	Saved mitigation information is retained.
+PM-MP-012	Verify Mitigation Plan submission	Complete required information and proceed.	Assessment progresses to Pending Endorsement.
+
+⸻
+
+11. PM — PENDING ENDORSEMENT
+
+ID	Test Scenario	Test Steps	Expected Result
+PM-PE-001	Verify Pending Endorsement stage	Submit completed assessment for endorsement.	Assessment moves to Pending Endorsement.
+PM-PE-002	Verify assigned CFCR RFOs	Review assigned RFOs.	Applicable CFCR RFOs are displayed.
+PM-PE-003	Verify RFO coverage status	Review RFO/Coverage status - 1LOD.	RFO coverage information is displayed.
+PM-PE-004	Verify RFO endorsement status	Review endorsement status.	Current RFO endorsement status is displayed.
+PM-PE-005	Verify RFO coverage comments	Review RFO coverage comments.	RFO coverage comments are displayed where provided.
+PM-PE-006	Verify optional RFO coverage comments	Complete endorsement without optional coverage comments.	Assessment can proceed without optional comments.
+PM-PE-007	Verify endorsed status	RFO completes endorsement.	Corresponding RFO endorsement status is updated.
+PM-PE-008	Verify multiple RFO endorsements	Assign multiple RFOs and complete required endorsements.	Each RFO endorsement status is tracked separately.
+PM-PE-009	Verify completion after all endorsements	Complete all required RFO endorsements.	Assessment becomes eligible for final completion.
+PM-PE-010	Verify Refer Back	RFO refers assessment back.	Assessment moves to Refer Back.
+PM-PE-011	Verify Refer Back comments	Open referred-back assessment.	RFO’s Refer Back comments are displayed.
+PM-PE-012	Verify PM update after Refer Back	Update the required information.	PM can update permitted fields.
+PM-PE-013	Verify resubmission after Refer Back	Resubmit corrected assessment.	Assessment returns to RFO endorsement.
+
+⸻
+
+12. PM — OFFLINE ENDORSEMENT / FINAL SUBMISSION
+
+ID	Test Scenario	Test Steps	Expected Result
+PM-FIN-001	Verify Offline Endorsement option	Open applicable assessment.	Offline Endorsement option is available where applicable.
+PM-FIN-002	Verify offline endorsement evidence upload	Upload endorsement evidence.	Evidence uploads successfully.
+PM-FIN-003	Verify offline endorsement evidence association	Open the assessment after upload.	Evidence is associated with the correct assessment.
+PM-FIN-004	Verify final endorsed risk assessment	Complete required endorsements.	Assessment reaches Final endorsed risk assessment stage.
+PM-FIN-005	Verify final assessment information	Review final assessment.	Final assessment information is displayed correctly.
+PM-FIN-006	Verify final submission	Complete required final action and submit.	Assessment is submitted successfully.
+PM-FIN-007	Verify Completed status	Return to landing page.	Assessment appears under Completed.
+PM-FIN-008	Verify Completed Date	Open completed assessment.	Completed Date is populated.
+PM-FIN-009	Verify completion history	Open History.	Final submission and completion activity are recorded.
+
+⸻
+
+13. PM — WORKFLOW EXPORT
+
+ID	Test Scenario	Test Steps	Expected Result
+PM-WFE-001	Verify Workflow Export option	Open COI workflow.	Workflow Export option is available.
+PM-WFE-002	Verify Workflow Export download	Select Export.	Workflow export downloads successfully.
+PM-WFE-003	Verify Case ID in export	Review Case ID.	Exported Case ID matches workflow.
+PM-WFE-004	Verify Initiative Category in export	Review Initiative Category.	Exported Initiative Category matches workflow.
+PM-WFE-005	Verify category-specific fields	Review applicable category fields.	Exported category-specific fields match workflow.
+PM-WFE-006	Verify Transaction in export	Review Transaction.	Complete Transaction is exported.
+PM-WFE-007	Verify Rationale in export	Review Rationale.	Complete Rationale is exported.
+PM-WFE-008	Verify Risk Assessment data	Review exported Risk Assessment information.	Risk Assessment data matches workflow.
+PM-WFE-009	Verify Mitigation Plan data	Review exported Mitigation Plan information.	Mitigation Plan data matches workflow.
+PM-WFE-010	Verify Action Owner	Review exported Action Owner.	Action Owner matches workflow.
+PM-WFE-011	Verify mitigation Status	Review mitigation Status.	Status matches workflow.
+PM-WFE-012	Verify supporting document information	Review applicable supporting document information.	Export reflects configured document information.
+PM-WFE-013	Verify RFO/Coverage status - 1LOD	Review exported RFO coverage status.	Export matches workflow.
+PM-WFE-014	Verify RFO comments	Review exported RFO comments.	Export matches workflow.
+PM-WFE-015	Verify endorsement information	Review endorsement information.	Exported endorsement information matches workflow.
+PM-WFE-016	Verify Status	Review Status.	Exported Status matches workflow.
+PM-WFE-017	Verify Created By	Review Created By.	Exported Created By matches workflow.
+PM-WFE-018	Verify Created Date	Review Created Date.	Exported Created Date matches workflow.
+PM-WFE-019	Verify Last Updated Date	Review Last Updated Date.	Exported Last Updated Date matches workflow.
+PM-WFE-020	Verify Completed Date	Review Completed Date.	Exported Completed Date matches workflow.
+PM-WFE-021	Verify long Transaction export	Export assessment with long Transaction.	Complete Transaction is exported without unintended truncation.
+PM-WFE-022	Verify long Rationale export	Export assessment with long Rationale.	Complete Rationale is exported without unintended truncation.
+PM-WFE-023	Verify Workflow Export accuracy	Compare workflow with exported data.	Exported data matches workflow data.
+
+⸻
+
+COI — RFO / REVIEWER TEST CASES
+
+RFO does not have the Initiative sheet/stage because RFO doesn’t initiate the assessment.
+
+RFO covers:
+
+Landing Page → Landing Page Export → Workflow → Risk Assessment Review → Mitigation Plan Review → Endorsement → Offline/Final → Workflow Export
+
+⸻
+
+14. RFO — LANDING PAGE COMMON
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-LP-001	Verify RFO landing page access	Login as RFO and navigate to COI.	COI landing page is displayed.
+RFO-LP-002	Verify My Cases	Select My Cases.	RFO-accessible cases are displayed.
+RFO-LP-003	Verify All Cases	Select All Cases, where permitted.	Only permitted cases are displayed.
+RFO-LP-004	Verify category dropdown	Open Initiative Category.	All configured categories are displayed.
+RFO-LP-005	Verify New Product / Product Change	Select category.	Applicable New Product / Product Change records are displayed.
+RFO-LP-006	Verify Corporate Action	Select category.	Applicable Corporate Action records are displayed.
+RFO-LP-007	Verify NICRA	Select category.	Applicable NICRA records are displayed.
+RFO-LP-008	Verify Other	Select category.	Applicable Other records are displayed.
+RFO-LP-009	Verify category switching	Switch between categories.	Grid refreshes correctly.
+RFO-LP-010	Verify In Progress tile	Select In Progress.	Applicable in-progress cases are displayed.
+RFO-LP-011	Verify Pending Endorsement tile	Select Pending Endorsement.	Applicable pending cases are displayed.
+RFO-LP-012	Verify Refer Back tile	Select Refer Back.	Applicable referred-back cases are displayed.
+RFO-LP-013	Verify Endorsement by RFO tile	Select Endorsement by RFO.	Applicable endorsement cases are displayed.
+RFO-LP-014	Verify Completed tile	Select Completed.	Applicable completed cases are displayed.
+RFO-LP-015	Verify status counts	Compare tile count with records.	Status count matches displayed records.
+RFO-LP-016	Verify search	Enter valid searchable value.	Matching accessible records are displayed.
+RFO-LP-017	Verify invalid search	Enter non-existing value.	No matching records are displayed.
+RFO-LP-018	Verify filter	Apply a filter.	Matching records are displayed.
+RFO-LP-019	Verify clear filter	Clear filter.	Applicable records are restored.
+RFO-LP-020	Verify ascending sort	Sort a column ascending.	Records are sorted ascending.
+RFO-LP-021	Verify descending sort	Sort a column descending.	Records are sorted descending.
+RFO-LP-022	Verify pagination	Navigate pages.	Correct records are displayed.
+RFO-LP-023	Verify horizontal scroll	Scroll horizontally.	All configured columns are accessible.
+
+⸻
+
+15. RFO — LANDING PAGE — NEW PRODUCT / PRODUCT CHANGE
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-NP-LP-001	Verify Programme code	Review Programme code.	Programme code displays the correct value.
+RFO-NP-LP-002	Verify Programme Name	Review Programme Name.	Programme Name displays the correct value.
+RFO-NP-LP-003	Verify Product manager	Review Product manager.	Product manager displays the correct user.
+RFO-NP-LP-004	Verify Business head / Product head	Review Business head / Product head.	Correct user is displayed.
+RFO-NP-LP-005	Verify Business line	Review Business line.	Correct Business line is displayed.
+RFO-NP-LP-006	Verify CFCR RFO	Review CFCR RFO.	Correct CFCR RFO is displayed.
+RFO-NP-LP-007	Verify Product description & scope	Review field.	Correct Product description & scope is displayed.
+RFO-NP-LP-008	Verify Applicable to — Islamic variant	Review field.	Islamic variant selection is displayed correctly.
+RFO-NP-LP-009	Verify Applicable to — Sustainable finance variant	Review field.	Sustainable finance variant selection is displayed correctly.
+RFO-NP-LP-010	Verify Status	Review Status.	Current Status is displayed.
+RFO-NP-LP-011	Verify Created By	Review Created By.	Correct creator is displayed.
+RFO-NP-LP-012	Verify Created Date	Review Created Date.	Correct creation date is displayed.
+RFO-NP-LP-013	Verify Last Updated Date	Review Last Updated Date.	Latest update date is displayed.
+RFO-NP-LP-014	Verify Completed Date	Review Completed Date.	Completion date is displayed for completed cases.
+RFO-NP-LP-015	Verify Product description & scope full text	Open Click to View where applicable.	Full Product description & scope is displayed.
+
+⸻
+
+16. RFO — LANDING PAGE — CORPORATE ACTION
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-CA-LP-001	Verify Project Name	Review Project Name.	Correct Project Name is displayed.
+RFO-CA-LP-002	Verify Transaction	Review Transaction.	Transaction displays Click to View.
+RFO-CA-LP-003	Verify Rationale	Review Rationale.	Rationale displays Click to View.
+RFO-CA-LP-004	Verify Responsible Person	Review Responsible Person.	Correct Responsible Person is displayed.
+RFO-CA-LP-005	Verify Accountable Executive	Review Accountable Executive.	Correct Accountable Executive is displayed.
+RFO-CA-LP-006	Verify MT Sponsor	Review MT Sponsor.	Correct MT Sponsor is displayed.
+RFO-CA-LP-007	Verify Business/Function	Review Business/Function.	Correct selected values are displayed.
+RFO-CA-LP-008	Verify multiple Business/Function	Review a multi-selection case.	All selected values are displayed.
+RFO-CA-LP-009	Verify CFCR RFOs	Review CFCR RFOs.	Applicable RFOs are displayed.
+RFO-CA-LP-010	Verify multiple CFCR RFOs	Review multiple-RFO case.	All assigned RFOs are displayed.
+RFO-CA-LP-011	Verify Status	Review Status.	Current Status is displayed.
+RFO-CA-LP-012	Verify Created By	Review Created By.	Correct creator is displayed.
+RFO-CA-LP-013	Verify Created Date	Review Created Date.	Correct date is displayed.
+RFO-CA-LP-014	Verify Last Updated Date	Review Last Updated Date.	Latest update date is displayed.
+RFO-CA-LP-015	Verify Completed Date	Review Completed Date.	Completion date is displayed where applicable.
+RFO-CA-LP-016	Verify Transaction popup	Click Transaction / Click to View.	Full Transaction description opens.
+RFO-CA-LP-017	Verify Rationale popup	Click Rationale / Click to View.	Full Rationale description opens.
+RFO-CA-LP-018	Verify Transaction accuracy	Compare popup against workflow.	Full Transaction text matches workflow.
+RFO-CA-LP-019	Verify Rationale accuracy	Compare popup against workflow.	Full Rationale text matches workflow.
+
+⸻
+
+17. RFO — LANDING PAGE — NICRA
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-NICRA-LP-001	Verify New Initiative Name	Review New Initiative Name.	Correct value is displayed.
+RFO-NICRA-LP-002	Verify New Initiative Summary	Review New Initiative Summary.	Correct value is displayed.
+RFO-NICRA-LP-003	Verify First Line	Review First Line.	Correct value is displayed.
+RFO-NICRA-LP-004	Verify Senior Manager / Group Business Head	Review field.	Correct user is displayed.
+RFO-NICRA-LP-005	Verify Country Coverage	Review Country Coverage.	Correct selected coverage is displayed.
+RFO-NICRA-LP-006	Verify multiple Country Coverage	Review multi-country case.	All selected countries are displayed.
+RFO-NICRA-LP-007	Verify Business/Function	Review field.	Correct selected values are displayed.
+RFO-NICRA-LP-008	Verify multiple Business/Function	Review multi-selection case.	All selected values are displayed.
+RFO-NICRA-LP-009	Verify CFCR RFOs	Review field.	Correct applicable RFOs are displayed.
+RFO-NICRA-LP-010	Verify multiple CFCR RFOs	Review multi-RFO case.	All assigned RFOs are displayed.
+RFO-NICRA-LP-011	Verify Status	Review Status.	Current Status is displayed.
+RFO-NICRA-LP-012	Verify Created By	Review Created By.	Correct creator is displayed.
+RFO-NICRA-LP-013	Verify Created Date	Review Created Date.	Correct creation date is displayed.
+RFO-NICRA-LP-014	Verify Last Updated Date	Review Last Updated Date.	Latest update date is displayed.
+RFO-NICRA-LP-015	Verify Completed Date	Review Completed Date.	Completion date is displayed where applicable.
+RFO-NICRA-LP-016	Verify New Initiative Summary full text	Open Click to View where applicable.	Full New Initiative Summary is displayed.
+
+⸻
+
+18. RFO — LANDING PAGE — OTHER
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-OTH-LP-001	Verify New Initiative Name	Review New Initiative Name.	Correct value is displayed.
+RFO-OTH-LP-002	Verify New Initiative Summary	Review New Initiative Summary.	Correct value is displayed.
+RFO-OTH-LP-003	Verify First Line	Review First Line.	Correct value is displayed.
+RFO-OTH-LP-004	Verify Approver	Review Approver.	Correct Approver is displayed.
+RFO-OTH-LP-005	Verify Country Coverage	Review Country Coverage.	Correct selected coverage is displayed.
+RFO-OTH-LP-006	Verify multiple Country Coverage	Review multi-country case.	All selected countries are displayed.
+RFO-OTH-LP-007	Verify Business/Function	Review Business/Function.	Correct selected values are displayed.
+RFO-OTH-LP-008	Verify multiple Business/Function	Review multi-selection case.	All selected values are displayed.
+RFO-OTH-LP-009	Verify CFCR RFOs	Review CFCR RFOs.	Applicable RFOs are displayed.
+RFO-OTH-LP-010	Verify multiple CFCR RFOs	Review multi-RFO case.	All assigned RFOs are displayed.
+RFO-OTH-LP-011	Verify Status	Review Status.	Current Status is displayed.
+RFO-OTH-LP-012	Verify Created By	Review Created By.	Correct creator is displayed.
+RFO-OTH-LP-013	Verify Created Date	Review Created Date.	Correct creation date is displayed.
+RFO-OTH-LP-014	Verify Last Updated Date	Review Last Updated Date.	Latest update date is displayed.
+RFO-OTH-LP-015	Verify Completed Date	Review Completed Date.	Completion date is displayed where applicable.
+RFO-OTH-LP-016	Verify New Initiative Summary full text	Open Click to View where applicable.	Full New Initiative Summary is displayed.
+
+⸻
+
+19. RFO — LANDING PAGE EXPORT
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-LPE-001	Verify Export option	Open RFO landing page.	Export option is available according to RFO permissions.
+RFO-LPE-002	Verify New Product / Product Change export	Select category and export.	New Product / Product Change data is exported.
+RFO-LPE-003	Verify Corporate Action export	Select category and export.	Corporate Action data is exported.
+RFO-LPE-004	Verify NICRA export	Select category and export.	NICRA data is exported.
+RFO-LPE-005	Verify Other export	Select category and export.	Other data is exported.
+RFO-LPE-006	Verify export download	Select Export.	File downloads successfully.
+RFO-LPE-007	Verify exported Programme code	Review Programme code.	Exported Programme code matches landing page.
+RFO-LPE-008	Verify exported Programme Name	Review Programme Name.	Exported Programme Name matches landing page.
+RFO-LPE-009	Verify exported Product manager	Review Product manager.	Exported Product manager matches landing page.
+RFO-LPE-010	Verify exported Business head / Product head	Review field.	Exported value matches landing page.
+RFO-LPE-011	Verify exported Business line	Review Business line.	Exported value matches landing page.
+RFO-LPE-012	Verify exported Product description & scope	Review field.	Exported value matches landing page.
+RFO-LPE-013	Verify exported Corporate Action fields	Review all CA fields.	Project Name, Transaction, Rationale, Responsible Person, Accountable Executive, MT Sponsor, Business/Function and CFCR RFOs match landing page.
+RFO-LPE-014	Verify exported NICRA fields	Review all NICRA fields.	New Initiative Name, New Initiative Summary, First Line, Senior Manager / Group Business Head, Country Coverage, Business/Function and CFCR RFOs match landing page.
+RFO-LPE-015	Verify exported Other fields	Review all Other fields.	New Initiative Name, New Initiative Summary, First Line, Approver, Country Coverage, Business/Function and CFCR RFOs match landing page.
+RFO-LPE-016	Verify exported Status	Review Status.	Exported Status matches landing page.
+RFO-LPE-017	Verify exported Created By	Review Created By.	Exported Created By matches landing page.
+RFO-LPE-018	Verify exported Created Date	Review Created Date.	Exported Created Date matches landing page.
+RFO-LPE-019	Verify exported Last Updated Date	Review Last Updated Date.	Exported Last Updated Date matches landing page.
+RFO-LPE-020	Verify exported Completed Date	Review Completed Date.	Exported Completed Date matches landing page.
+RFO-LPE-021	Verify Transaction export	Export Corporate Action.	Complete Transaction is exported.
+RFO-LPE-022	Verify Rationale export	Export Corporate Action.	Complete Rationale is exported.
+RFO-LPE-023	Verify filtered export	Apply filter and export.	Export reflects the applied filter.
+RFO-LPE-024	Verify searched export	Search and export.	Export reflects search results.
+RFO-LPE-025	Verify RFO-accessible data	Export as RFO.	Export contains only RFO-accessible data.
+RFO-LPE-026	Verify export accuracy	Compare export with landing page.	Exported data matches landing page.
+
+⸻
+
+20. RFO — WORKFLOW / DETAILS PANEL
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-WF-001	Open assigned assessment	Select an assigned COI case.	Assessment opens successfully.
+RFO-WF-002	Verify workflow stages	Review workflow progress.	Configured COI workflow stages are displayed.
+RFO-WF-003	Verify current stage	Open assessment.	Current stage is highlighted.
+RFO-WF-004	Verify current status	Review status.	Current Status is displayed correctly.
+RFO-WF-005	Verify Details panel	Open Details.	Details panel is displayed.
+RFO-WF-006	Verify Info tab	Select Info.	Assessment information is displayed.
+RFO-WF-007	Verify History tab	Select History.	Assessment history is displayed.
+RFO-WF-008	Verify Case ID	Review Case ID.	Case ID matches the assessment.
+RFO-WF-009	Verify Initiative Category	Review Initiative Category.	Correct category is displayed.
+RFO-WF-010	Verify Responsible Person	Review Responsible Person.	Correct user is displayed.
+RFO-WF-011	Verify Accountable Executive	Review Accountable Executive.	Correct user is displayed.
+RFO-WF-012	Verify MT Sponsor	Review MT Sponsor.	Correct user is displayed.
+RFO-WF-013	Verify Business/Function	Review Business/Function.	Correct selected values are displayed.
+RFO-WF-014	Verify CFCR RFOs	Review CFCR RFOs.	Correct RFO assignment is displayed.
+RFO-WF-015	Verify Transaction hyperlink	Click Transaction / Click to View.	Transaction popup opens.
+RFO-WF-016	Verify Transaction popup	Review popup.	Complete Transaction description is displayed.
+RFO-WF-017	Verify Rationale hyperlink	Click Rationale / Click to View.	Rationale popup opens.
+RFO-WF-018	Verify Rationale popup	Review popup.	Complete Rationale description is displayed.
+RFO-WF-019	Verify category-specific details	Open each category.	Category-specific fields match PM-submitted data.
+RFO-WF-020	Verify RFO read-only access	Attempt to edit PM-entered assessment information.	PM-entered information is read-only to RFO.
+
+⸻
+
+21. RFO — RISK ASSESSMENT REVIEW
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-RA-001	Verify Risk Assessment stage	Navigate to Risk Assessment.	Risk Assessment information is displayed.
+RFO-RA-002	Verify Initiative information	Review carried-forward information.	Initiative information matches PM submission.
+RFO-RA-003	Verify Potential COI Risk	Review Potential COI Risk.	PM response is displayed correctly.
+RFO-RA-004	Verify Potential COI Risk = No	Review a No-response assessment.	Potential COI Risk displays No.
+RFO-RA-005	Verify Potential COI Risk = Yes	Review a Yes-response assessment.	Potential COI Risk displays Yes.
+RFO-RA-006	Verify dependent risk details	Review applicable details where Yes was selected.	Required COI risk details are displayed.
+RFO-RA-007	Verify RFO read-only Risk Assessment	Attempt to edit Risk Assessment responses.	Risk Assessment responses are read-only to RFO.
+RFO-RA-008	Verify Risk Assessment data accuracy	Compare assessment against PM-entered data.	RFO sees the same submitted Risk Assessment data.
+
+⸻
+
+22. RFO — MITIGATION PLAN REVIEW
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-MP-001	Verify Mitigation Plan stage	Navigate to Mitigation Plan.	Mitigation Plan stage is displayed.
+RFO-MP-002	Verify mitigation target	Review mitigation target.	Correct target information is displayed.
+RFO-MP-003	Verify Action Owner	Review Action Owner.	Correct Action Owner is displayed.
+RFO-MP-004	Verify Mitigation Plan status	Review mitigation Status.	Correct status is displayed.
+RFO-MP-005	Verify supporting document	Open supporting document.	Supporting document is accessible where permitted.
+RFO-MP-006	Verify mitigation mapping	Review mitigation-to-question mapping.	Mapping is displayed correctly.
+RFO-MP-007	Verify multiple-question mapping	Review a multi-question mapping.	One mitigation plan is correctly mapped to permitted questions.
+RFO-MP-008	Verify RFO read-only access	Attempt to modify mitigation information.	PM-entered mitigation information remains read-only.
+
+⸻
+
+23. RFO — ENDORSEMENT
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-END-001	Verify RFO/Coverage status - 1LOD	Open RFO coverage section.	RFO/Coverage status - 1LOD is displayed.
+RFO-END-002	Verify applicable endorsement action	Review available actions.	Applicable RFO endorsement actions are displayed.
+RFO-END-003	Verify Endorse action	Select Endorse.	Endorsement action is available.
+RFO-END-004	Verify endorsement submission	Complete required endorsement information and submit.	RFO endorsement is submitted successfully.
+RFO-END-005	Verify endorsement comments	Enter applicable endorsement comments.	Endorsement comments are saved.
+RFO-END-006	Verify optional endorsement comments	Submit endorsement without optional comments.	Endorsement is submitted successfully where comments are optional.
+RFO-END-007	Verify endorsement status	Complete endorsement and review status.	RFO endorsement status is updated.
+RFO-END-008	Verify PM receives endorsement status	Open assessment as PM.	Updated RFO endorsement status is visible to PM.
+RFO-END-009	Verify Refer Back action	Select Refer Back.	Refer Back action is available.
+RFO-END-010	Verify Refer Back comments mandatory	Select Refer Back without comments.	Refer Back cannot be submitted without required comments.
+RFO-END-011	Verify Refer Back with comments	Enter comments and submit.	Assessment is referred back with the comments.
+RFO-END-012	Verify PM receives Refer Back	Open assessment as PM.	PM can view RFO Refer Back comments.
+RFO-END-013	Verify multiple RFO endorsement tracking	Complete endorsement for one of multiple RFOs.	Individual RFO endorsement status is updated correctly.
+RFO-END-014	Verify remaining RFO endorsement requirement	Complete one RFO endorsement while another remains pending.	Remaining required RFO endorsement remains pending.
+RFO-END-015	Verify all RFO endorsements completed	Complete all required RFO endorsements.	All required endorsements are recorded.
+
+⸻
+
+24. RFO — OFFLINE / FINAL
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-FIN-001	Verify Offline Endorsement	Open applicable assessment.	Offline Endorsement process is available where applicable.
+RFO-FIN-002	Verify offline endorsement evidence	Review uploaded evidence.	Offline endorsement evidence is available.
+RFO-FIN-003	Verify evidence association	Open evidence from assessment.	Correct evidence is associated with the assessment.
+RFO-FIN-004	Verify Final endorsed risk assessment	Complete required RFO endorsement activities.	Assessment reaches Final endorsed risk assessment.
+RFO-FIN-005	Verify final assessment	Review final assessment information.	Final endorsed assessment is displayed correctly.
+RFO-FIN-006	Verify completion status	Complete configured final process.	Assessment moves to Completed.
+RFO-FIN-007	Verify Completed Date	Review completed assessment.	Completed Date is populated correctly.
+RFO-FIN-008	Verify History after completion	Open History.	RFO endorsement and completion activities are recorded.
+
+⸻
+
+25. RFO — WORKFLOW EXPORT
+
+ID	Test Scenario	Test Steps	Expected Result
+RFO-WFE-001	Verify Workflow Export option	Open RFO workflow.	Workflow Export is available according to permissions.
+RFO-WFE-002	Verify export download	Select Export.	Workflow export downloads successfully.
+RFO-WFE-003	Verify Case ID	Review Case ID.	Exported Case ID matches workflow.
+RFO-WFE-004	Verify Initiative Category	Review Initiative Category.	Exported category matches workflow.
+RFO-WFE-005	Verify category-specific fields	Review all applicable category fields.	Exported category-specific fields match workflow.
+RFO-WFE-006	Verify Transaction	Review Transaction.	Complete Transaction is exported.
+RFO-WFE-007	Verify Rationale	Review Rationale.	Complete Rationale is exported.
+RFO-WFE-008	Verify Risk Assessment	Review Risk Assessment data.	Exported Risk Assessment data matches workflow.
+RFO-WFE-009	Verify Mitigation Plan	Review Mitigation Plan data.	Exported Mitigation Plan data matches workflow.
+RFO-WFE-010	Verify Action Owner	Review Action Owner.	Exported Action Owner matches workflow.
+RFO-WFE-011	Verify mitigation Status	Review mitigation Status.	Exported status matches workflow.
+RFO-WFE-012	Verify RFO/Coverage status - 1LOD	Review exported RFO coverage status.	Exported value matches workflow.
+RFO-WFE-013	Verify RFO endorsement information	Review endorsement data.	Exported endorsement information matches workflow.
+RFO-WFE-014	Verify RFO comments	Review RFO comments.	Exported RFO comments match workflow.
+RFO-WFE-015	Verify Refer Back information	Export a referred-back assessment.	Refer Back information is exported correctly.
+RFO-WFE-016	Verify Status	Review Status.	Exported Status matches workflow.
+RFO-WFE-017	Verify Created By	Review Created By.	Exported Created By matches workflow.
+RFO-WFE-018	Verify Created Date	Review Created Date.	Exported Created Date matches workflow.
+RFO-WFE-019	Verify Last Updated Date	Review Last Updated Date.	Exported Last Updated Date matches workflow.
+RFO-WFE-020	Verify Completed Date	Review Completed Date.	Exported Completed Date matches workflow.
+RFO-WFE-021	Verify long Transaction	Export long Transaction data.	Complete Transaction is exported without unintended truncation.
+RFO-WFE-022	Verify long Rationale	Export long Rationale data.	Complete Rationale is exported without unintended truncation.
+RFO-WFE-023	Verify Workflow Export accuracy	Compare workflow with export.	Exported data matches workflow data.
+RFO-WFE-024	Verify RFO access control	Export assessment as RFO.	Only permitted assessment data is exported.
+
+⸻
+
+FINAL WORKBOOK STRUCTURE
+
+So when you manually create the Excel, do not make 5 summary rows like Copilot did.
+
+Make the sheets like this:
 
 COI PM
 
@@ -485,14 +724,34 @@ COI RFO
 3. Workflow
 4. Workflow Export
 
-And don’t make the mistake of creating one generic “Category Columns” test case.
+And your Excel columns should simply be:
 
-For every category, you expand the actual fields individually. And the common landing-page fields are always:
+Test Case ID	Test Scenario	Test Steps	Expected Result
 
-* Status
-* Created By
-* Created Date
-* Last Updated Date
-* Completed Date
+If your existing workbook also requires execution columns, append:
 
-Also, Transaction and Rationale each need both UI and data-validation coverage because the landing page shows them through Click to View rather than displaying the entire description directly.
+Preconditions | Test Data | Status | Actual Result | Evidence
+
+⸻
+
+Most important correction
+
+The Landing Page is not just:
+
+“Verify category selection.”
+
+It is:
+
+Category → every category-specific field → every common field → every interaction with those fields.
+
+For example, NICRA is:
+
+New Initiative Name → New Initiative Summary → First Line → Senior Manager / Group Business Head → Country Coverage → Business/Function → CFCR RFOs → Status → Created By → Created Date → Last Updated Date → Completed Date
+
+And Corporate Action is:
+
+Project Name → Transaction → Rationale → Responsible Person → Accountable Executive → MT Sponsor → Business/Function → CFCR RFOs → Status → Created By → Created Date → Last Updated Date → Completed Date
+
+Then Transaction and Rationale get their own Click-to-View/popup test cases.
+
+That is the level of granularity your senior is expecting — one validation per row, not a module summary.
