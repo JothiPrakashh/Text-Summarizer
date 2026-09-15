@@ -1,47 +1,9 @@
-AC8 – Material Change in Process
+Hi Ritika, hope you’re doing well and had a good break!
 
-When Material Change in Process is selected:
+Just wanted to check if there are any updates following my first-round interview for the Analyst – Stress Testing role (Req ID 59180) on 4 September. I understand the feedback was shared with HR, so I wanted to check if there’s any update on the next steps.
 
-Trigger Event / Driver
+I also checked with Steffy recently, and she mentioned that the feedback had been passed to HR but that she wasn’t able to share any further updates at this stage.
 
-Mandatory dropdown.
+Since my apprenticeship concludes tomorrow, 17 September, I wanted to check in once before then and make sure I don’t miss any communication regarding the role after my internal access ends.
 
-⸻
-
-Process Information
-
-* Process Name (Mandatory)
-* Business Owner (Mandatory employee lookup)
-* Process Description (Mandatory)
-
-⸻
-
-Ownership & Coverage
-
-* Country Coverage (Mandatory dropdown)
-* Business Function (Mandatory searchable multi-select)
-* CFCR RFO(s) (Mandatory searchable multi-select)
-
-⸻
-
-Change Information
-
-* Change Summary (Mandatory)
-
-⸻
-
-Supporting Documentation
-
-* Supporting Documentation (Optional file upload)
-
-⸻
-
-Behaviour
-
-* Business Owner shall support employee lookup using Bank ID or employee name.
-* Country Coverage shall support selection of Group or configured Country values.
-* Business Function shall support searchable multi-selection.
-* CFCR RFO(s) shall be manually selected from the configured RFO list.
-* Trigger Event / Driver shall be mandatory.
-* The assessment shall not be created until all mandatory fields are completed.
-* Supporting Documentation, when uploaded, shall be stored against the assessment and be available throughout the assessment lifecycle.
+Thanks again for your support!
